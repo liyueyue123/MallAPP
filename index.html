@@ -64,6 +64,15 @@
 
     function funIniGroup(){
         var eHeaderLis = $api.domAll('header li');
+        var arrUrl = ['home', 'sort', 'cart', 'mine'],
+            frames = [];
+        for (var i = 0,len = arrUrl.length; i < len; i++) {
+                frames.push( {
+                    name: arrUrl[i],
+                    url: './html/'+arrUrl[i]+'/index.html',
+                    bounces: true
+                } )
+        }
         api.openFrameGroup({  //打开frameGroup页面
             name: 'group',
             scrollEnabled: false,
@@ -74,19 +83,7 @@
                 h: $api.dom('#main').offsetHeight
             },
             index: 0,
-            frames: [{
-                name: 'home',
-                url: 'html/home/index.html'
-            }, {
-                name: 'sort',
-                url: 'html/sort/index.html'
-            }, {
-                name: 'cart',
-                url: 'html/cart/index.html',
-            }, {
-                name: 'mine',
-                url: 'html/mine/index.html'
-            }]
+            frames: frames
         }, function (ret, err) {
         });
     }
