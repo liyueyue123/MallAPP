@@ -14,14 +14,14 @@
         #footer{  background-color: #f2f2f2; }
         #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #footer ul li.active{ color: #f6a4af; }
-        #footer ul li:nth-child(1){ background-image: url(./image/home_normal3.png); }
-        #footer ul li:nth-child(2){ background-image: url(./image/classification_normal3.png); }
-        #footer ul li:nth-child(3){ background-image: url(./image/shopping_normal3.png); }
-        #footer ul li:nth-child(4){ background-image: url(./image/mine_normal3.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(./image/home_press3.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(./image/classification_press3.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(./image/shopping_press3.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(./image/mine_press3.png); }
+        #footer ul li:nth-child(1){ background-image: url(./image/home_normal4.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/classification_normal4.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/shopping_normal4.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/mine_normal4.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/home_press4.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/classification_press4.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/shopping_press4.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/mine_press4.png); }
         .flex-con{
           overflow: auto
         }
@@ -45,7 +45,7 @@
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >商城</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >分类</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >购物车</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >个人中心123242</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >个人中心</li>
         </ul>
     </div>
 </div>
@@ -65,10 +65,11 @@
     function funIniGroup(){
         var eHeaderLis = $api.domAll('header li'),
             frames = [];
+            folders = ['home','sort','cart','mine'];
         for (var i = 0,len = eHeaderLis.length; i < len; i++) {
                 frames.push( {
-                    name: 'frame'+i,
-                    url: './html/frame'+i+'.html',
+                    name: folders[i],
+                    url: './html/'+folders[i]+'index.html',
                     bgColor : 'rgba(0,0,0,.2)',
                     bounces:true
                 } )
