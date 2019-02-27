@@ -63,18 +63,8 @@
     }
 
     function funIniGroup(){
-        var eHeaderLis = $api.domAll('header li'),
-            frames = [];
-            folders = ['home','sort','cart','mine'];
-        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-                frames.push( {
-                    name: folders[i],
-                    url: './html/'+folders[i]+'index.html',
-                    bgColor : 'rgba(0,0,0,.2)',
-                    bounces:true
-                } )
-        }
-        api.openFrameGroup({
+        var eHeaderLis = $api.domAll('header li');
+        api.openFrameGroup({  //打开frameGroup页面
             name: 'group',
             scrollEnabled: false,
             rect: {
@@ -84,9 +74,20 @@
                 h: $api.dom('#main').offsetHeight
             },
             index: 0,
-            frames: frames
+            frames: [{
+                name: 'home',
+                url: 'html/home/index.html'
+            }, {
+                name: 'sort',
+                url: 'html/sort/index.html'
+            }, {
+                name: 'cart',
+                url: 'html/cart/index.html',
+            }, {
+                name: 'mine',
+                url: 'html/mine/index.html'
+            }]
         }, function (ret, err) {
-
         });
     }
 
