@@ -5,22 +5,200 @@
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>个人中心</title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
     <style>
-        .empty{
-          height: 10rem;
-          background: pink;
+        body {
+            background-color:#f7f7f7;
         }
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            widht: 100%;
+            height:43vw;
+            background-color:#fafafa;
+        }
+        header .my_head_position {
+            margin: 0 auto;
+            width: 7rem;
+            height: 7rem;
+            background: pink;
+            border-radius: 50%;
+            box-shadow:0.1rem 0.1rem 0.3rem #c6c6cb;
+        }
+        header .my_head_name {
+            margin-top: .6rem;
+            display: flex;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        aside {
+            display: flex;
+            padding: 0 1rem;
+            height: 4rem;
+            align-items: center;
+            font-size: 1.3rem;
+            background: white;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+
+        }
+        main .my_main_orders,ul{
+            display: flex;
+            flex-direction: row;
+        }
+        main .my_main_orders {
+            justify-content:space-between;
+            align-items:center;
+            padding:0 1rem;
+            height:4.5rem;
+            border-bottom:0.05rem solid #e7e7e7;
+        }
+        main ul {
+            justify-content: space-between;
+            align-items: center;
+            height: 6rem;
+            padding: 0 3rem;
+        }
+        main ul li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        main ul li img {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        main ul li span {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        section {
+            /*margin-top: */
+
+        }
+        section ul {
+            display: flex;
+            flex-direction: column;
+        }
+        section ul li {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: white;
+            padding: 0 1rem;
+            align-items: center;
+            height: 4.5rem;
+            border-bottom: 0.05rem solid #e7e7e7;
+        }
+        section ul li::after {
+            margin-right: .06rem;
+            content: "";
+            width: .8rem;
+            height: .8rem;
+            border-top: 1px solid #574073;
+            border-right: 1px solid #574073;
+            transform: rotate(45deg);
+        }
+        section ul li span {
+            /*margin-left: 1rem;*/
+            font-size: 1.4rem;
+        }
+
     </style>
 </head>
 <body>
-    <div class="empty">个人中心</div>
-    <div class="main">
-      123
-    </div>
+    <header>
+        <div class="my_head_position">
+
+        </div>
+        <div class="my_head_name">
+            清梦
+        </div>
+        <div class="my_head_count">
+            积分：0
+        </div>
+    </header>
+
+    <aside>
+        <img src="" alt="">
+        <h5>为了保障您及时获取订单信息和更多优惠，</h5>
+        <h5>请绑定手机号</h5>
+    </aside>
+
+    <main>
+        <div class="my_main_orders">
+            <h5>我的订单</h5>
+            <h5>查看全部订单 ></h5>
+        </div>
+        <ul>
+            <li data-index="1" onclick="switchFrame(this)" tapmode>
+                <img src="../../image/mine/my_waitPlay.png" alt="">
+                <span>待支付</span>
+            </li>
+            <li data-index="2" onclick="switchFrame(this)" tapmode>
+                <img src="../../image/mine/my_waitDelivery.png" alt="">
+                <span>待发货</span>
+            </li>
+            <li data-index="3" onclick="switchFrame(this)" tapmode>
+                <img src="../../image/mine/my_waitReceive.png" alt="">
+                <span>待收货</span>
+            </li>
+            <li data-index="4" onclick="switchFrame(this)" tapmode>
+                <img src="../../image/mine/my_complete.png" alt="">
+                <span>交易完成</span>
+            </li>
+        </ul>
+    </main>
+
+    <section>
+        <ul>
+            <li>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>地址管理</span>
+            </li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+        </ul>
+    </section>
 </body>
 </html>
 
-<script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/app.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/app.js"></script>
+<script type="text/javascript">
+//切换frame页面
+    apiready = function() {
+
+
+    }
+    function switchFrame(el) {
+        let thisIndex = $api.attr(el, 'data-index');
+        api.openWin({
+            name: 'orderInfo',
+            url: './orderInfo.html',
+            pageParam: {
+                index: thisIndex
+            }
+        });
+
+
+    }
+
+</script>
