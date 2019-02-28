@@ -7,7 +7,11 @@
     <title>底部导航</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
     <link rel="stylesheet" type="text/css" href="./css/app.css"/>
-    <style>
+    <style media="screen">
+        html,
+        body {
+            background-color: #F3F5F9;
+        }
         #footer{  background-color: #f2f2f2; }
         #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #footer ul li.active{ color: #f6a4af; }
@@ -26,55 +30,60 @@
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
-    <div id="main" class="flex-con">
-
-    </div>
+    <div id="main" class="flex-con"></div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >商城</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >分类</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >购物车</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >个人中心</li>
+          <li onclick="randomSwitchBtn( this );" class="flex-con active" tapmode>商城</li>
+          <li onclick="randomSwitchBtn( this );" class="flex-con" tapmode>分类</li>
+          <li onclick="randomSwitchBtn( this );" class="flex-con" tapmode>购物车</li>
+          <li onclick="randomSwitchBtn( this );" class="flex-con" tapmode>个人中心</li>
         </ul>
     </div>
 </div>
 </body>
 </html>
-<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/app.js"></script>
 <script type="text/javascript">
-    apiready = function () {
-        api.setStatusBarStyle({
-            style: 'dark',
-            color: '#6ab494'
-        });
-        funIniGroup();
+    apiready = function(){
+      api.setStatusBarStyle({
+          style: 'dark',
+          color: '#4f4f4f'
+      });
+      funIniGroup();
     }
-
-    function funIniGroup(){
-        var eHeaderLis = $api.domAll('header li');
-        var arrUrl = ['home', 'sort', 'cart', 'mine'],
-            frames = [];
-        for (var i = 0,len = arrUrl.length; i < len; i++) {
-                frames.push( {
-                    name: arrUrl[i],
-                    url: './html/'+arrUrl[i]+'/index.html'
-                } )
-        }
-        api.openFrameGroup({  //打开frameGroup页面
-            name: 'group',
-            scrollEnabled: false,
-            rect: {
-                x: 0,
-                y: 0,
-                w: api.winWidth,
-                h: $api.dom('#main').offsetHeight
-            },
-            index: 0,
-            frames: frames
-        }, function (ret, err) {
-        });
+    //打开框架群组页面
+    function funIniGroup() {
+          var footerH = $api.offset($api.byId('footer')).h + 1;
+          var arrUrl = ['home', 'sort', 'cart', 'mine'],
+              frames = [];
+          for (var i = 0,len = arrUrl.length; i < len; i++) {
+                  frames.push( {
+                      name: arrUrl[i],
+                      url: './html/'+arrUrl[i]+'/index.html'
+                  } )
+          }
+          //打开框架群组页面
+          api.openFrameGroup({
+              name: 'indexGroup',
+              scrollEnabled: false,
+              rect: {
+                  x: 0,
+                  y: 0,
+                  w: 'auto',
+                  h: api.winHeight - footerH
+              },
+              index: 0,
+              preload:2, //默认加载当前页面后的前两个页面
+              frames: frames
+          }, function(ret, err) {
+              if (ret) {
+                  // console.log( JSON.stringify( ret ) );
+              } else {
+                  alert(JSON.stringify(err));
+              }
+          });
     }
-
     // 随意切换按钮
     function randomSwitchBtn( tag ) {
         if( tag == $api.dom('#footer li.active') )return;
@@ -88,6 +97,7 @@
             }
         }
         $api.addCls( eFootLis[index], 'active');
+        console.log(index);
         api.setFrameGroupIndex({
             name: 'group',
             index: index

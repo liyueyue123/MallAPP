@@ -5,13 +5,46 @@
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>分类</title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/app.css"/>
-    <style>
-        .empty{ text-align: center; padding: 120px 0; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/sort.css">
 </head>
 <body>
-    <div class="empty">分类</div>
+  <header class="sortHeader">
+    <div class="sortHeaderTitle">分类</div>
+    <div class="searchBox">
+      <div class="searchBar">
+          <i></i><span>输入商品关键词</span>
+      </div>
+      <div class="footMark">
+        <i class="sortIcon"></i><span>足迹</span>
+      </div>
+    </div>
+  </header>
+
+  <ul class="leftFrame">
+      <li class="sortList"><i class="round"></i>为您推荐</li>
+      <li class="sortList">热门品牌</li>
+      <li class="sortList">面部护理</li>
+      <li class="sortList">底妆彩妆</li>
+      <li class="sortList">aaaaaaa</li>
+      <li class="sortList">ffffff</li>
+      <li class="sortList">sadsff</li>
+      <li class="sortList">sdfjjj</li>
+      <li class="sortList">sdfsdfjgh</li>
+      <li class="sortList">dfff</li>
+      <li class="sortList">ddd</li>
+      <li class="sortList">aaaaaaa</li>
+      <li class="sortList">ffffff</li>
+      <li class="sortList">sadsff</li>
+  </ul>
+
 </body>
 </html>
+<script src="../../script/api.js"></script>
+<script src="../../script/app.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+    $api.fixStatusBar( $api.dom('header') );
+  }
+</script>
