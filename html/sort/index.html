@@ -21,24 +21,6 @@
       </div>
     </div>
   </header>
-
-  <ul class="leftFrame">
-      <li class="sortList"><i class="round"></i>为您推荐</li>
-      <li class="sortList">热门品牌</li>
-      <li class="sortList">面部护理</li>
-      <li class="sortList">底妆彩妆</li>
-      <li class="sortList">aaaaaaa</li>
-      <li class="sortList">ffffff</li>
-      <li class="sortList">sadsff</li>
-      <li class="sortList">sdfjjj</li>
-      <li class="sortList">sdfsdfjgh</li>
-      <li class="sortList">dfff</li>
-      <li class="sortList">ddd</li>
-      <li class="sortList">aaaaaaa</li>
-      <li class="sortList">ffffff</li>
-      <li class="sortList">sadsff</li>
-  </ul>
-
 </body>
 </html>
 <script src="../../script/api.js"></script>
@@ -46,5 +28,22 @@
 <script type="text/javascript">
   apiready = function(){
     $api.fixStatusBar( $api.dom('header') );
+    indexFrame();
+  }
+  function indexFrame(){
+    var headerH = $api.offset($api.dom('header')).h;
+    var frameH = api.winHeight - headerH;
+    api.openFrame({
+        name: 'index_frame',
+        url: 'index_frame.html',
+        rect: {
+            x: 0,
+            y: headerH,
+            w: 'auto',
+            h: frameH
+        },
+        bounces: true,
+    });
+
   }
 </script>

@@ -101,3 +101,9 @@ body,html{
     color: #d34c49;
     background-color: #ffffff;
 }
+
+/*热门推荐右侧frame*/
+.hotTabs {
+    width: 56.6rem;
+    height: 20.2rem;
+}
