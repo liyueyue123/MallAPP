@@ -189,7 +189,7 @@
 
     }
     function switchFrame(el) {
-        let thisIndex = $api.attr(el, 'data-index');
+        var thisIndex = $api.attr(el, 'data-index');
         api.openWin({
             name: 'orderInfo',
             url: './orderInfo.html',
