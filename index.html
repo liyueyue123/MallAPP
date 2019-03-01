@@ -26,9 +26,8 @@
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
-    <div id="main" class="flex-con">
+    <div id="main" class="flex-con"></div>
 
-    </div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >商城</li>
@@ -43,10 +42,6 @@
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript">
     apiready = function () {
-        api.setStatusBarStyle({
-            style: 'dark',
-            color: '#6ab494'
-        });
         funIniGroup();
     }
 
@@ -54,10 +49,15 @@
         var eHeaderLis = $api.domAll('header li');
         var arrUrl = ['home', 'sort', 'cart', 'mine'],
             frames = [];
+        var footerH = $api.offset($api.byId('footer')).h;
+        console.log(footerH);
         for (var i = 0,len = arrUrl.length; i < len; i++) {
                 frames.push( {
                     name: arrUrl[i],
-                    url: './html/'+arrUrl[i]+'/index.html'
+                    url: './html/'+arrUrl[i]+'/index.html',
+                    pageParam:{
+                      footerH : footerH
+                    }
                 } )
         }
         api.openFrameGroup({  //打开frameGroup页面
