@@ -37,13 +37,13 @@ apiready = function(){
     });
     var headerH = $api.offset($api.dom('header')).h;
     api.openFrame({
-        name: 'index_frame',
-        url: 'index_frame.html',
+        name: 'mine_frame',
+        url: 'mine_frame.html',
         rect: {
             x: 0,
             y: headerH,
             w: api.winWidth,
-            h: api.winHeight - headerH
+            h: api.winHeight - headerH - api.pageParam.footerH
         },
         pageParam: {
             name: 'test'
