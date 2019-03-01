@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
     <style>
@@ -14,10 +14,26 @@
             flex-direction: column;
             width: 100%;
         }
+        header .title {
+            display: flex;
+            align-items: center;
+            height: 4.55rem;
+            background: red;
+        }
+        header .title::before {
+            margin-right: .06rem;
+            content: "";
+            width: .8rem;
+            height: .8rem;
+            border-top: 1px solid #574073;
+            border-right: 1px solid #574073;
+            transform: rotate(45deg);
+        }
         header nav {
             width: 200%;
             overflow-x: scroll;
-            height: 5rem;
+            height: 4.7rem;
+            /*height: 9.4rem;*/
             background: pink;
         }
         header nav ul {
@@ -33,18 +49,12 @@
         header nav ul li:first-child {
             margin-left: 0;
         }
-
-        section {
-
-        }
-
     </style>
 </head>
 <body>
-    <div class="box">
     <header>
         <div class="title">
-            全部订单
+            <span>全部订单</span>
         </div>
         <nav>
             <ul>
@@ -57,24 +67,34 @@
             </ul>
         </nav>
     </header>
-    <section>
-        <ul>
-            <li>123</li>
-            <li>123</li>
-            <li>123</li>
-            <li>123</li>
-        </ul>
-    </section>
-</div>
 </body>
 </html>
-
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/app.js"></script>
 <script type="text/javascript">
-    apiready = function() {
-        let index = api.pageParam.index;   //上个页面传参
-
-    }
-
+apiready = function(){
+    var header = $api.dom('header');
+    $api.fixStatusBar(header);
+    api.setStatusBarStyle({
+        style: 'dark'
+    });
+    var headerH = $api.offset($api.dom('header')).h;
+    api.openFrame({
+        name: 'orderInfo_frame',
+        url: 'orderInfo_frame.html',
+        rect: {
+            x: 0,
+            y: headerH,
+            w: api.winWidth,
+            h: api.winHeight - headerH
+        },
+        pageParam: {
+            name: 'test'
+        },
+        bounces: true,
+        bgColor: 'rgba(0,0,0,1)',
+        vScrollBarEnabled: true,
+        hScrollBarEnabled: true
+    });
+  };
 </script>
