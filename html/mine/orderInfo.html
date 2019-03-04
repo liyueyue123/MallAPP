@@ -15,19 +15,25 @@
             width: 100%;
         }
         header .title {
+            position: relative;
             display: flex;
+            justify-content: center;
             align-items: center;
-            height: 4.55rem;
+            /*height: 4.55rem;*/
+            height: 6.3rem;
+            font-size: 1.7rem;
+            font-weight: bold;
             background: red;
         }
         header .title::before {
-            margin-right: .06rem;
+            position: absolute;
+            left: 2rem;
             content: "";
             width: .8rem;
             height: .8rem;
             border-top: 1px solid #574073;
             border-right: 1px solid #574073;
-            transform: rotate(45deg);
+            transform: rotate(225deg);
         }
         header nav {
             width: 200%;
