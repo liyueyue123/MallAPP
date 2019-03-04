@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
     <style>
-        body {
+        html, body {
+            height: auto;
             background-color:#f7f7f7;
         }
         header {
@@ -43,6 +44,14 @@
             font-size: 1.3rem;
             background: white;
         }
+        aside h5 {
+            font-size: 1.3rem;
+            color:#313131;
+        }
+        aside h5 a{
+            color:#e53e42;
+            text-decoration:underline;
+        }
 
         main {
             display: flex;
@@ -57,11 +66,15 @@
             flex-direction: row;
         }
         main .my_main_orders {
-            justify-content:space-between;
-            align-items:center;
-            padding:0 1rem;
-            height:4.5rem;
-            border-bottom:0.05rem solid #e7e7e7;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            height: 4.5rem;
+            font-size: 1.3rem;
+            border-bottom: 0.05rem solid #e7e7e7;
+        }
+        main .my_main_orders h6 {
+            color: #959595;
         }
         main ul {
             justify-content: space-between;
@@ -84,31 +97,41 @@
         }
 
         section {
-            /*margin-top: */
-
+            margin-bottom: 4rem;
         }
         section ul {
             display: flex;
             flex-direction: column;
         }
         section ul li {
+            position: relative;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            background-color: white;
-            padding: 0 1rem;
             align-items: center;
+            padding: 0 1rem;
             height: 4.5rem;
+            background-color: white;
             border-bottom: 0.05rem solid #e7e7e7;
         }
+        section ul li span {
+            margin-left: 1rem;
+        }
         section ul li::after {
-            margin-right: .06rem;
+            position: absolute;
+            right: 1rem;
             content: "";
             width: .8rem;
             height: .8rem;
             border-top: 1px solid #574073;
             border-right: 1px solid #574073;
             transform: rotate(45deg);
+        }
+        section ul li:nth-child(4) {
+            margin-bottom: 1rem;
+            border: none;
+        }
+        section ul li:last-child {
+            border: none;
         }
         section ul li span {
             /*margin-left: 1rem;*/
@@ -132,14 +155,13 @@
 
     <aside>
         <img src="" alt="">
-        <h5>为了保障您及时获取订单信息和更多优惠，</h5>
-        <h5>请绑定手机号</h5>
+        <h5>为了保障您及时获取订单信息和更多优惠，<a>请绑定手机号</a></h5>
     </aside>
 
     <main>
         <div class="my_main_orders">
             <h5>我的订单</h5>
-            <h5>查看全部订单 ></h5>
+            <h6 data-index="6" onclick="switchFrame(this)" tapmode>查看全部订单 ></h6>
         </div>
         <ul>
             <li data-index="1" onclick="switchFrame(this)" tapmode>
@@ -163,18 +185,42 @@
 
     <section>
         <ul>
-            <li>
+            <li data-index="1" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>会员中心</span>
+            </li>
+            <li data-index="2" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>我的团购</span>
+            </li>
+            <li data-index="3" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>我的优惠券</span>
+            </li>
+            <li data-index="4" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>签到有奖</span>
+            </li>
+            <li data-index="5" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>邀请好友领券</span>
+            </li>
+            <li data-index="6" onclick="randomSwitchBtn(this);" tapmode>
                 <img src="../../image/mine/my_addr.png" alt="">
                 <span>地址管理</span>
             </li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
+            <li data-index="7" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>我的足迹</span>
+            </li>
+            <li data-index="8" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>联系客服</span>
+            </li>
+            <li data-index="9" onclick="randomSwitchBtn(this);" tapmode>
+                <img src="../../image/mine/my_addr.png" alt="">
+                <span>关于套美物店铺</span>
+            </li>
         </ul>
     </section>
 </body>
@@ -183,11 +229,11 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/app.js"></script>
 <script type="text/javascript">
-//切换frame页面
+
     apiready = function() {
 
-
     }
+    //跳转订单页面
     function switchFrame(el) {
         var thisIndex = $api.attr(el, 'data-index');
         api.openWin({
@@ -197,6 +243,27 @@
                 index: thisIndex
             }
         });
+
+
+    }
+
+    // 跳转列表页面
+    function randomSwitchBtn(el) {
+        var thisIndex = $api.attr(el, 'data-index');
+        var urlName = ['vipInfo', 'group', 'coupon', 'signIn', 'friend', 'address', 'footprint', 'chat', 'introduce'];
+        console.log(urlName[thisIndex-1])
+        api.openWin({
+            name: urlName[thisIndex-1],
+            url: urlName[thisIndex-1] + '.html',
+            // pageParam: {
+            //     index: thisIndex
+            // }
+        });
+
+
+
+
+
 
 
     }

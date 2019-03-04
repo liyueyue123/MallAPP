@@ -6,7 +6,6 @@
       <title>title</title>
       <link rel="stylesheet" type="text/css" href="../../css/api.css" />
       <link rel="stylesheet" type="text/css" href="../../css/app.css" />
-      <link rel="stylesheet" type="text/css" href="../../css/company.css" />
   </head>
   <style>
   .app_head{
@@ -35,6 +34,7 @@
             style: 'dark'
         });
         var headerH = $api.offset($api.dom('header')).h;
+        var footerH = api.pageParam.footerH
         api.openFrame({
             name: 'cart_frame',
             url: 'cart_frame.html',
@@ -42,7 +42,7 @@
                 x: 0,
                 y: headerH,
                 w: api.winWidth,
-                h: api.winHeight - headerH
+                h: api.winHeight - headerH - footerH
             },
             pageParam: {
                 name: 'test'

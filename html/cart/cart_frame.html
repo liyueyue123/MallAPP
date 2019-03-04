@@ -109,7 +109,7 @@
                 <div class="empty_none_coupon">
                     <img src="../../image/cart/empty_none_coupon.png" alt="">
                 </div>
-                <div class="empty_none_btn">发现好物</div>
+                <div class="empty_none_btn" onclick="openPage1()" tapmode>发现好物</div>
             </div>
         </div>
         <div class="empty_recommend">
@@ -129,7 +129,7 @@
                 <li>7</li>
                 <li>8</li>
                 <li>9</li>
-                <li>10</li>
+                <li onclick="openPage()" tapmode>10</li>
             </ul>
         </div>
     </div>
@@ -148,37 +148,51 @@
     var draw = $api.byId("draw")
     var ul = draw.children[0]
     draw.addEventListener('touchstart', function(event) {
-            // console.log('%ctouchstart // clientY: '+event.changedTouches[0].clientY,"color:green");
-            startX = event.changedTouches[0].clientX;
+            startX = event.changedTouches[0].clientX+110
+            startX1 = event.changedTouches[0].clientX;
+            console.log(startX1)
         });
+
     draw.addEventListener('touchmove', function(event) {
-
-        // console.log('touchmove // clientY: '+event.changedTouches[0].clientY);
-        var  y = event.changedTouches[0].clientX - startX
-        if (y > 0) {
-                ul.style.transition = "none";
-              ul.style.transform = 'translateX('+0.3*y+'px)';
+        const y = event.changedTouches[0].clientX - startX1
+        const x = event.changedTouches[0].clientX - startX
+        if (y>0) {
+            ul.style.transition = "none";
+            ul.style.transform = 'translateX('+0.9*y+'px)';
         }else{
-            // console.log(y)
-            // console.log(event.changedTouches[0].clientX)
-            // ul.style.transition = "none";
-            // ul.style.transform = 'translateX('+0.3*1+'px)';
+            ul.style.transition = "none";
+            ul.style.transform = 'translateX('+0.9*x+'px)';
         }
-        // 为了清除卡顿问题，需要清除过渡效果
-
-        // 阻尼系数0.3
     });
+
     draw.addEventListener('touchend', function(event) {
-            // console.log('%ctouchend // clientY: '+event.changedTouches[0].clientY,"color:orange");
-            const y = event.changedTouches[0].clientX- startX
+        const y = event.changedTouches[0].clientX - startX1
+        console.log()
+        if (y>0){
             ul.style.transition = 'transform .6s';
-            // 添加过渡效果
-            if (y>0){
-                ul.style.transform = 'translateX('+0+'px)';
-            }else{
-                ul.style.transform = 'translateX('+10+'px)';
-            }
-
-
+            ul.style.transform = 'translateX('+0+'px)';
+        }else{
+            ul.style.transition = 'transform .6s';
+            ul.style.transform = 'translateX('+-110+'px)';
+        }
     });
+    function openPage() {
+        api.openWin({
+            name: 'good',
+            url: 'good.html',
+            pageParam: {
+                index: 1
+            },
+           delay : 100
+        });
+    }
+    // function openPage1() {
+    //     api.openWin({
+    //         name: 'index',
+    //         url: '../home/index.html',
+    //         pageParam: {
+    //             index: 1
+    //         }
+    //     });
+    // }
 </script>
