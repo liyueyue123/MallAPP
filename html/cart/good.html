@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+      <link rel="stylesheet" type="text/css" href="../../css/app.css" />
+  </head>
+  <style>
+  .app_head{
+    height: 10rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #000;
+    line-height: 4.8rem;
+    font-family:PingFangSC-Regular;
+    position: relative;
+    background-color: #ffffff;
+    position: relative;
+    border-bottom:1px solid #eee;
+  }
+  .app_head p{
+      position: absolute;
+      left:.9rem;
+      top:2.5rem;
+      display: inline-block;
+      width: 9rem;
+      height: 3.4rem;
+      border-radius: 2rem;
+      border: 1px solid #eee;
+  }
+  .app_head p::after{
+      content:"";
+      position: absolute;
+      left:50%;
+      top:.8rem;
+      transform: rotateX(-50%);
+      display: inline-block;
+      width: 1px;
+      height: 2rem;
+      background-color: #eee;
+  }
+  .app_head p i{
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      background: url('../../image/cart/good_back.png') no-repeat center  center;
+      background-size: 100% 100%;
+      position: absolute;
+      left:1.4rem;
+      top:.8rem;
+  }
+  .app_head p span{
+      display: inline-block;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: url('../../image/cart/good_index.png') no-repeat center  center;
+      background-size: 100% 100%;
+      position: absolute;
+      right:1.4rem;
+      top:.6rem;
+  }
+  #app_head_tab ul {
+      display: flex;
+      justify-content: space-around;
+  }
+  #app_head_tab ul li {
+      font-size: 1.4rem;
+  }
+  #app_head_tab ul li.active{color:red}
+  #app_head_tab ul li:nth-child(1).active{color:red}
+  #app_head_tab ul li:nth-child(2).active{color:red}
+  #app_head_tab ul li:nth-child(3).active{color:red}
+  #app_head_tab ul li:nth-child(4).active{color:red}
+  </style>
+  <body>
+    <header class="app_head">
+        <p><i onclick="closePage()" tapmode></i><span></span></p>
+        精选商品
+        <div id="app_head_tab">
+            <ul>
+                <li  class="flex-con active" onclick="listClick( this )" tapmode>销量</li>
+                <li  class="flex-con" onclick="listClick( this )" tapmode>最新</li>
+                <li  class="flex-con" onclick="listClick( this )" tapmode>价格<i></i><span></span></li>
+                <li  class="flex-con" onclick="listClick( this )" tapmode>筛选</li>
+            </ul>
+        </div>
+    </header>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/app.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+          var header = $api.dom('header');
+          $api.fixStatusBar(header);
+          api.setStatusBarStyle({
+              style: 'dark'
+          });
+        funIniGroup()
+      };
+
+      function funIniGroup(){
+          var eHeaderLis = $api.domAll('header li');
+          var arrUrl = ['good_frame','good_frame_1','good_frame_2','good_frame_3'],
+              frames = [];
+          var headerH = $api.offset($api.dom('header')).h;
+          for (var i = 0,len = arrUrl.length; i < len; i++) {
+              console.log(arrUrl[i]+'.html',)
+                  frames.push( {
+                      name: arrUrl[i],
+                      url:arrUrl[i]+'.html',
+                      pageParam:{
+                        headerH : headerH
+                    },
+                    bounces: true,
+                    bgColor: 'rgba(0,0,0,1)',
+                  })
+          }
+          api.openFrameGroup({  //打开frameGroup页面
+              name: 'good_group',
+              scrollEnabled: false,
+              rect: {
+                  x: 0,
+                  y: headerH,
+                  w: api.winWidth,
+                  h: headerH
+              },
+              index: 0,
+              frames: frames,
+          }, function (ret, err) {
+            //   console.log(JSON.stringify(err))
+          });
+      }
+
+      function listClick(tag) {
+          if( tag == $api.dom('#app_head_tab li.active') )return;
+          var eFootLis = $api.domAll('#app_head_tab li'),
+              index = 0;
+          for (var i = 0,len = eFootLis.length; i < len; i++) {
+              if( tag == eFootLis[i] ){
+                  index = i;
+              }else{
+                  $api.removeCls(eFootLis[i], 'active');
+              }
+          }
+          $api.addCls( eFootLis[index], 'active');
+          api.setFrameGroupIndex({
+              name: 'good_group',
+              index: index
+          });
+      }
+      function closePage() {
+          api.closeFrameGroup({
+            name: 'root'
+        });
+      }
+  </script>
+  </html>
