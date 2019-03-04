@@ -1,138 +1,57 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>购物车</title>
-    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
-    <style>
-        .empty{
-            width:100%;
-            overflow: hidden;
-        }
-        /*数据为空时*/
-        .empty .empty_none{
-          margin-top: 4.2rem;
-          text-align: center;
-          font-size: 1.4rem;
-        }
-        .empty .empty_none p i{
-            display: inline-block;
-            width: 2rem;
-            height:2rem;
-            background: url('../../image/common/shopping_normal4.png') no-repeat center center ;
-            background-size:2rem;
-            vertical-align: top;
-        }
-        /*空购物车*/
-        .empty .empty_none p span{
-            padding-left: .3rem;
-            color:#505050;
-        }
-        /*优惠券盒子*/
-        .empty .empty_none .empty_none_coupon{
-            width: 30rem;
-            height: 10rem;
-            background-color:#f7f7f7;
-            margin: 0 auto ;
-            margin-top: 3.8rem;
-        }
-        /*优惠券*/
-        .empty .empty_none .empty_none_coupon img{
-            display: inline-block;
-            width: 22.5rem;
-            height: 5.7rem;
-            margin-top: 2.2rem;
-        }
-        /*发现好物*/
-        .empty .empty_none  .empty_none_btn{
-            margin: 0 auto;
-            background-color:#e14548;
-            color:#fff;
-            border-radius:20px;
-            width: 11.2rem;
-            height: 3.4rem;
-            line-height: 3.4rem;
-            margin-top: 3rem;
-        }
-        /*推荐*/
-        .empty .empty_recommend{
-            border-top:1.1rem solid #f7f7f7;
-            margin-top: 2.8rem;
-        }
-        .empty .empty_recommend p{
-            font-size: 1.6rem;
-            color: #3e4e4e;
-            margin: 1.4rem 0 1.4rem 1.2rem;
-        }
-        .empty .empty_recommend p i{
-            display: inline-block;
-            width: 2.3rem;
-            height:2.6rem;
-            background: url('../../image/cart/empty_recommend.png') no-repeat ;
-            background-size:2.3rem 2.6rem;
-            vertical-align: top;
-        }
-        .empty .empty_recommend p span{
-            display: inline-block;
-            padding-left: .45rem;
-            margin-top: .5rem;
-
-        }
-        .empty .empty_recommend_banner img {
-            width: 100%;
-        }
-        .empty .empty_info{
-            width: 125%;
-            overflow-x:auto;
-        }
-        .empty .empty_info ul{
-            width: 125%;
-            display: flex;
-            flex-wrap:wrap;
-        }
-        .empty .empty_info ul li{
-            width: 9.61rem;
-            height: 12.9rem;
-            border:1px solid black;
-            margin-top: 1.7rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="empty">
-        <div class="empty_none">
-            <div>
-                <p><i></i><span>购物车空空的</span></p>
-                <div class="empty_none_coupon">
-                    <img src="../../image/cart/empty_none_coupon.png" alt="">
-                </div>
-                <div class="empty_none_btn">发现好物</div>
-            </div>
-        </div>
-        <div class="empty_recommend">
-            <p><i></i><span>为您推荐</span></p>
-            <div class="empty_recommend_banner">
-                <img src="../../image/cart/empty_recommend_banner.png" alt="">
-            </div>
-        </div>
-        <div class="empty_info">
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-                <li>7</li>
-                <li>8</li>
-                <li>9</li>
-                <li>10</li>
-            </ul>
-        </div>
-    </div>
-
-</body>
-</html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+      <link rel="stylesheet" type="text/css" href="../../css/app.css" />
+  </head>
+  <style>
+  .app_head{
+    height: 4.8rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #000;
+    line-height: 4.8rem;
+    font-family:PingFangSC-Regular;
+    position: relative;
+    background-color: #ffffff;
+  }
+  </style>
+  <body>
+    <header class="app_head">
+        购物车
+    </header>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/app.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        var header = $api.dom('header');
+        $api.fixStatusBar(header);
+        api.setStatusBarStyle({
+            style: 'dark'
+        });
+        var headerH = $api.offset($api.dom('header')).h;
+        var footerH = api.pageParam.footerH
+        api.openFrame({
+            name: 'cart_frame',
+            url: 'cart_frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: api.winWidth,
+                h: api.winHeight - headerH - footerH
+            },
+            pageParam: {
+                name: 'test'
+            },
+            bounces: true,
+            bgColor: 'rgba(0,0,0,1)',
+            vScrollBarEnabled: true,
+            hScrollBarEnabled: true
+        });
+      };
+  </script>
+  </html>
