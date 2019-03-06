@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>分类</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/sort.css">
+</head>
+<body>
+  <header class="sortHeader">
+    <div class="sortBack" onclick="closePage()" tapmode></div>
+    <div class="searchBox">
+      <div class="searchBar">
+          <i></i><input type="text" name="" value="" placeholder="输入商品关键词">
+      </div>
+      <div class="footMark">
+        <i class="sortIcon"></i>
+      </div>
+    </div>
+  </header>
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script src="../../script/app.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+    $api.fixStatusBar( $api.dom('.sortHeader') );
+  }
+  function closePage(){
+    api.closeWin();
+  }
+
+</script>
