@@ -9,7 +9,8 @@
   </head>
   <style>
   .app_head{
-    height: 4.8rem;
+    overflow: hidden;
+    min-height: 4.8rem;
     text-align: center;
     font-size: 1.8rem;
     color: #000;
@@ -18,11 +19,22 @@
     position: relative;
     background-color: #ffffff;
   }
+  /*购物车不为空*/
+  .head_none {
+      height:4.4rem;
+      background-color:#fff8f0;
+      text-align: left;
+      padding-left: 1rem;
+  }
   </style>
   <body>
     <header class="app_head">
         购物车
+        <div class="head_none">
+            1233
+        </div>
     </header>
+
   </body>
   <script type="text/javascript" src="../../script/api.js"></script>
   <script type="text/javascript" src="../../script/app.js"></script>

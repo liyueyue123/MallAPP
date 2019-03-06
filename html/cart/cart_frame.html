@@ -85,20 +85,85 @@
             width: 100%;
         }
         .empty .empty_info{
-            width: 125%;
+            width: 100%;
             overflow-x:auto;
         }
         .empty .empty_info ul{
-            width: 125%;
+            width: 100%;
             display: flex;
             flex-wrap:wrap;
         }
         .empty .empty_info ul li{
-            width: 9.61rem;
+            width: 9rem;
             height: 12.9rem;
             border:1px solid black;
             margin-top: 1.7rem;
         }
+
+       .container-wrapper .wrapper {
+           position: relative;
+           height: 100px;
+           overflow: hidden;
+           border-bottom: 1px solid #f2f2f2
+       }
+       .container-wrapper .container {
+           position: absolute;
+           left: 0;
+           width: 100%;
+           height: 100px;
+           line-height: 100px;
+           padding-left: 5%;
+           box-sizing: border-box;
+           background-color: #fff;
+           font-size: 1.2em;
+           font-weight: 200;
+
+       }
+       .container-wrapper .delete {
+           float: right;
+           width: 80px;
+           top: 0;
+           right: 0;
+           line-height: 100px;
+           background-color: #f00;
+           color: #fff;
+           text-align: center;
+           height: 100px;
+       }
+       .container-wrapper .delete i.iconfont {
+           font-size: 1em;
+           padding-right: 5px;
+       }
+       .container-wrapper p {
+           text-align: center;
+           padding-top: 4em;
+           padding-bottom: 6em;
+           color: #555;
+           font-size: 1em;
+       }
+      .container-wrapper  .add {
+           width: 100px;
+           height: 50px;
+           text-align: center;
+           line-height: 50px;
+           background: #fff;
+           margin-bottom: 50px;
+       }
+       @keyframes noheight {
+           0% {
+               height: 100px;
+               opacity: 1;
+           }
+
+           100% {
+               height: 0px;
+               opacity: 0;
+           }
+       }
+
+      .container-wrapper .noheight {
+           animation: noheight .5s linear 0s forwards;
+       }
     </style>
 </head>
 <body>
@@ -112,6 +177,25 @@
                 <div class="empty_none_btn" onclick="openPage1()" tapmode>发现好物</div>
             </div>
         </div>
+
+        <div class="container-wrapper" id="container-wrapper">
+            <div class="wrapper">
+                <div class="container" ontouchstart="return touchstartF(event,this);" ontouchmove="return touchmoveF(event,this);">左右滑动1</div>
+                <div class="delete" onclick="return toDelete(event,this);">
+                    <i class="iconfont icon-shanchu"></i>
+                    删除
+                </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="container" ontouchstart="return touchstartF(event,this);" ontouchmove="return touchmoveF(event,this);">左右滑动2</div>
+                <div class="delete" onclick="return toDelete(event,this);">
+                    <i class="iconfont icon-shanchu"></i>
+                    删除
+                </div>
+            </div>
+        </div>
+
         <div class="empty_recommend">
             <p><i></i><span>为您推荐</span></p>
             <div class="empty_recommend_banner">
@@ -120,15 +204,13 @@
         </div>
         <div class="empty_info" id="draw">
             <ul>
-                <li>1</li>
+                <li style="background:red">1</li>
                 <li>2</li>
                 <li>3</li>
                 <li>4</li>
                 <li>5</li>
                 <li>6</li>
                 <li>7</li>
-                <li>8</li>
-                <li>9</li>
                 <li onclick="openPage()" tapmode>10</li>
             </ul>
         </div>
@@ -144,37 +226,35 @@
 
     }
     var startX = 0;
-    const maxMove = 500;
     var draw = $api.byId("draw")
     var ul = draw.children[0]
     draw.addEventListener('touchstart', function(event) {
-            startX = event.changedTouches[0].clientX+110
+            // startX = event.changedTouches[0].clientX
             startX1 = event.changedTouches[0].clientX;
-            console.log(startX1)
+            // console.log(startX)
         });
 
     draw.addEventListener('touchmove', function(event) {
         const y = event.changedTouches[0].clientX - startX1
-        const x = event.changedTouches[0].clientX - startX
-        if (y>0) {
+        // const x = event.changedTouches[0].clientX - startX-110
+        // if (y>0) {
             ul.style.transition = "none";
-            ul.style.transform = 'translateX('+0.9*y+'px)';
-        }else{
-            ul.style.transition = "none";
-            ul.style.transform = 'translateX('+0.9*x+'px)';
-        }
+            ul.style.transform = 'translateX('+0.3*y+'px)';
+        // }else{
+            // ul.style.transition = "none";
+            // ul.style.transform = 'translateX('+x+'px)';
+        // }
     });
 
     draw.addEventListener('touchend', function(event) {
         const y = event.changedTouches[0].clientX - startX1
-        console.log()
-        if (y>0){
+        // if (y>0){
             ul.style.transition = 'transform .6s';
             ul.style.transform = 'translateX('+0+'px)';
-        }else{
-            ul.style.transition = 'transform .6s';
-            ul.style.transform = 'translateX('+-110+'px)';
-        }
+        // }else{
+            // ul.style.transition = 'transform .6s';
+            // ul.style.transform = 'translateX('+-110+'px)';
+        // }
     });
     function openPage() {
         api.openWin({
@@ -195,4 +275,59 @@
     //         }
     //     });
     // }
+
+
+
+
+    function touchstartF(event) {
+	    x = event.changedTouches[0].pageX;
+	    y = event.changedTouches[0].pageY;
+	    swipeX = true;
+	    swipeY = true;
+	};
+	function touchmoveF(event, e) {
+	    X = event.changedTouches[0].pageX;
+	    Y = event.changedTouches[0].pageY;
+	    // 左右滑动
+	    if (swipeX && Math.abs(X - x) - Math.abs(Y - y) > 0) {
+	        // 阻止事件冒泡
+	        event.stopPropagation();
+	        if (X - x > 10) {
+	            event.preventDefault();
+	            e.style.WebkitTransform = "translateX(" + 0 + "px)";
+	            e.style.transition = "-webkit-transform 300ms ease-in-out";
+	        }
+	        if (x - X > 10) {
+	            event.preventDefault();
+	            e.style.WebkitTransform = "translateX(" + -80 + "px)";
+	            e.style.transition = "-webkit-transform 300ms ease-in-out";
+	        }
+	        swipeY = false;
+	    }
+	    // // 上下滑动
+	    // if (swipeY && Math.abs(X - x) - Math.abs(Y - y) < 0) {
+	    //     swipeX = false;
+	    // }
+	};
+
+
+	function toDelete(event, e) {
+	    var deleteL = document.querySelectorAll('.delete');
+	    var wrapper = document.querySelectorAll('.wrapper');
+	    for (var i = 0; i < wrapper.length; i++) {
+	        wrapper[i].style.transition = 'height 500ms';
+	        wrapper[i].style.webkitTransition = 'height 500ms';
+	        wrapper[i].style.overflow = 'hidden';
+	    }
+	    var deleteLB = e;
+	    var down = deleteLB.parentNode;
+	    if (down.clientHeight == '100') {
+	        // deleteLB.parentNode.style.height = '0';
+	        deleteLB.parentNode.classList.add('noheight');
+	        setTimeout(function () {
+	            down.remove();
+	        }, 700);
+	    }
+
+	}
 </script>
