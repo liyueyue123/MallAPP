@@ -1,119 +1,140 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>底部导航</title>
-    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/app.css"/>
-    <style>
-        #footer{  background-color: #f2f2f2; }
-        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #footer ul li.active{ color: #f6a4af; }
-        #footer ul li:nth-child(1){ background-image: url(./image/common/home_normal4.png); }
-        #footer ul li:nth-child(2){ background-image: url(./image/common/classification_normal4.png); }
-        #footer ul li:nth-child(3){ background-image: url(./image/common/shopping_normal4.png); }
-        #footer ul li:nth-child(4){ background-image: url(./image/common/mine_normal4.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(./image/common/home_press4.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(./image/common/classification_press4.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(./image/common/shopping_press4.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(./image/common/mine_press4.png); }
-        .flex-con{
-          overflow: auto
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/app.css" />
+    <link rel="stylesheet" type="text/css" href="./css/common.css" />
+
 </head>
+
 <body>
-<div id="wrap" class="flex-wrap flex-vertical">
-    <div id="main" class="flex-con"></div>
-    <div id="footer" class="border-t">
-        <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >商城</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >分类</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >购物车</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >个人中心</li>
-        </ul>
+    <div id="wrap" class="flex-wrap flex-vertical">
+        <header>
+            <ul>
+                <li class="border-b active">
+                    桃美物店铺
+                    <!-- 头部导航 -->
+                    <ul class="navTab_home">
+                      <li class="active_home" onclick="navToggle(this);" tapmode>首页</li>
+                      <li onclick="navToggle(this);" tapmode>节后收心快速速成指南</li>
+                      <li onclick="navToggle(this);" tapmode>健康生活</li>
+                    </ul>
+                </li>
+                <li class="border-b">
+                  分类
+                  <div class="searchBox">
+                    <div class="searchBar" onclick="searchWin()" tapmode>
+                        <i></i><span>输入商品关键词</span>
+                    </div>
+                    <div class="footMark">
+                      <i class="sortIcon"></i><span>足迹</span>
+                    </div>
+                  </div>
+                </li>
+                <li class="">购物车</li>
+                <li class="">个人中心</li>
+            </ul>
+        </header>
+        <div id="main" class="flex-con"></div>
+        <div id="footer" class="border-t">
+            <ul class="flex-wrap">
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active">商城</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">分类</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">购物车</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">个人中心</li>
+            </ul>
+        </div>
     </div>
-</div>
 </body>
+
 </html>
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript">
-    apiready = function () {
+    apiready = function() {
         funIniGroup();
     }
 
-    function funIniGroup(){
+    function funIniGroup() {
         var eHeaderLis = $api.domAll('header li');
         var arrUrl = ['home', 'sort', 'cart', 'mine'],
             frames = [];
         var footerH = $api.offset($api.byId('footer')).h;
         // console.log(footerH);
-        for (var i = 0,len = arrUrl.length; i < len; i++) {
-                frames.push( {
-                    name: arrUrl[i],
-                    url: './html/'+arrUrl[i]+'/index.html',
-                    pageParam:{
-                      footerH : footerH
-                    }
-                } )
+        for (var i = 0, len = arrUrl.length; i < len; i++) {
+            frames.push({
+                name: arrUrl[i],
+                url: './html/' + arrUrl[i] + '/index.html',
+                pageParam: {
+                    footerH: footerH
+                },
+                bounces: true
+            })
         }
-        api.openFrameGroup({  //打开frameGroup页面
+        api.openFrameGroup({ //打开frameGroup页面
             name: 'group',
             scrollEnabled: false,
             rect: {
                 x: 0,
-                y: 0,
+                y: $api.dom('header').offsetHeight,
                 w: api.winWidth,
                 h: $api.dom('#main').offsetHeight
             },
             index: 0,
-            frames: frames
-        }, function (ret, err) {
-        });
+            frames: frames, 
+        }, function(ret, err) {});
     }
 
     // 随意切换按钮
-    function randomSwitchBtn( tag ) {
-        if( tag == $api.dom('#footer li.active') )return;
+    function randomSwitchBtn(tag) {
+        if (tag == $api.dom('#footer li.active')) return;
         var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header>ul>li'),
             index = 0;
-        for (var i = 0,len = eFootLis.length; i < len; i++) {
-            if( tag == eFootLis[i] ){
+        for (var i = 0, len = eFootLis.length; i < len; i++) {
+            if (tag == eFootLis[i]) {
                 index = i;
-            }else{
+            } else {
                 $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
             }
         }
-        $api.addCls( eFootLis[index], 'active');
+        $api.addCls(eFootLis[index], 'active');
+        $api.addCls(eHeaderLis[index], 'active');
+        api.setFrameGroupAttr({
+            name: 'group',
+            rect: {
+              y: $api.dom('header').offsetHeight,
+              h: $api.dom('#main').offsetHeight
+            }
+        });
         api.setFrameGroupIndex({
             name: 'group',
             index: index
         });
-        // openIndexFrames(index);
+        // alert(index)
     }
 
-    // // 打开frame页面
-    // function openIndexFrames(index) {
-    //   var frameNames = ['home', 'sort', 'cart', 'mine'];
-    //   var winH = api.winHeight;
-    //   var footerH = $api.offset($api.byId('footer')).h;
-    //   var h = winH - footerH;
-    //   if( index != 0 || index != 1){
-    //     api.openFrame({
-    //         name: frameNames[index]+'_frame',
-    //         url: './html/'+frameNames[index]+'/'+frameNames[index]+'_frame.html',
-    //         bounces: true,
-    //         bgColor: '#fff',
-    //         rect: {
-    //             x: 0,
-    //             y: 0,
-    //             w: 'auto',
-    //             h: h
-    //         }
-    //     });
-    //   }
-    //
-    // }
+    // 首页导航栏的切换
+    function navToggle (e) {
+      $api.removeCls($api.dom('.navTab_home>li.active_home'), 'active_home');
+      $api.addCls(e, 'active_home');
+    }
+
+    // 分类页的搜索 跳转
+    function searchWin(){
+        api.openWin({
+            name: 'sort_search',
+            url: './html/sort/sort_search.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+    }
+
 </script>

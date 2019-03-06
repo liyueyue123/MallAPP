@@ -1,69 +1,333 @@
 <!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-      <title>title</title>
-      <link rel="stylesheet" type="text/css" href="../../css/api.css" />
-      <link rel="stylesheet" type="text/css" href="../../css/app.css" />
-  </head>
-  <style>
-  .app_head{
-    overflow: hidden;
-    min-height: 4.8rem;
-    text-align: center;
-    font-size: 1.8rem;
-    color: #000;
-    line-height: 4.8rem;
-    font-family:PingFangSC-Regular;
-    position: relative;
-    background-color: #ffffff;
-  }
-  /*购物车不为空*/
-  .head_none {
-      height:4.4rem;
-      background-color:#fff8f0;
-      text-align: left;
-      padding-left: 1rem;
-  }
-  </style>
-  <body>
-    <header class="app_head">
-        购物车
-        <div class="head_none">
-            1233
-        </div>
-    </header>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>购物车</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+    <style>
+        .empty{
+            width:100%;
+            overflow: hidden;
+        }
+        /*数据为空时*/
+        .empty .empty_none{
+          margin-top: 2.2rem;
+          text-align: center;
+          font-size: 1.4rem;
+        }
+        .empty .empty_none p i{
+            display: inline-block;
+            width: 2rem;
+            height:2rem;
+            background: url('../../image/common/shopping_normal4.png') no-repeat center center ;
+            background-size:2rem;
+            vertical-align: top;
+        }
+        /*空购物车*/
+        .empty .empty_none p span{
+            padding-left: .3rem;
+            color:#505050;
+        }
+        /*优惠券盒子*/
+        .empty .empty_none .empty_none_coupon{
+            width: 30rem;
+            height: 10rem;
+            background-color:#f7f7f7;
+            margin: 0 auto ;
+            margin-top: 3.8rem;
+        }
+        /*优惠券*/
+        .empty .empty_none .empty_none_coupon img{
+            display: inline-block;
+            width: 22.5rem;
+            height: 5.7rem;
+            margin-top: 2.2rem;
+        }
+        /*发现好物*/
+        .empty .empty_none  .empty_none_btn{
+            margin: 0 auto;
+            background-color:#e14548;
+            color:#fff;
+            border-radius:20px;
+            width: 11.2rem;
+            height: 3.4rem;
+            line-height: 3.4rem;
+            margin-top: 3rem;
+        }
+        /*推荐*/
+        .empty .empty_recommend{
+            border-top:1.1rem solid #f7f7f7;
+            margin-top: 2.8rem;
+        }
+        .empty .empty_recommend p{
+            font-size: 1.6rem;
+            color: #3e4e4e;
+            margin: 1.4rem 0 1.4rem 1.2rem;
+        }
+        .empty .empty_recommend p i{
+            display: inline-block;
+            width: 2.3rem;
+            height:2.6rem;
+            background: url('../../image/cart/empty_recommend.png') no-repeat ;
+            background-size:2.3rem 2.6rem;
+            vertical-align: top;
+        }
+        .empty .empty_recommend p span{
+            display: inline-block;
+            padding-left: .45rem;
+            margin-top: .5rem;
 
-  </body>
-  <script type="text/javascript" src="../../script/api.js"></script>
-  <script type="text/javascript" src="../../script/app.js"></script>
-  <script type="text/javascript">
-      apiready = function(){
-        var header = $api.dom('header');
-        $api.fixStatusBar(header);
-        api.setStatusBarStyle({
-            style: 'dark'
+        }
+        .empty .empty_recommend_banner img {
+            width: 100%;
+        }
+        .empty .empty_info{
+            width: 100%;
+            overflow-x:auto;
+        }
+        .empty .empty_info ul{
+            width: 100%;
+            display: flex;
+            flex-wrap:wrap;
+        }
+        .empty .empty_info ul li{
+            width: 9rem;
+            height: 12.9rem;
+            border:1px solid black;
+            margin-top: 1.7rem;
+        }
+
+       .container-wrapper .wrapper {
+           position: relative;
+           height: 100px;
+           overflow: hidden;
+           border-bottom: 1px solid #f2f2f2
+       }
+       .container-wrapper .container {
+           position: absolute;
+           left: 0;
+           width: 100%;
+           height: 100px;
+           line-height: 100px;
+           padding-left: 5%;
+           box-sizing: border-box;
+           background-color: #fff;
+           font-size: 1.2em;
+           font-weight: 200;
+
+       }
+       .container-wrapper .delete {
+           float: right;
+           width: 80px;
+           top: 0;
+           right: 0;
+           line-height: 100px;
+           background-color: #f00;
+           color: #fff;
+           text-align: center;
+           height: 100px;
+       }
+       .container-wrapper .delete i.iconfont {
+           font-size: 1em;
+           padding-right: 5px;
+       }
+       .container-wrapper p {
+           text-align: center;
+           padding-top: 4em;
+           padding-bottom: 6em;
+           color: #555;
+           font-size: 1em;
+       }
+      .container-wrapper  .add {
+           width: 100px;
+           height: 50px;
+           text-align: center;
+           line-height: 50px;
+           background: #fff;
+           margin-bottom: 50px;
+       }
+       @keyframes noheight {
+           0% {
+               height: 100px;
+               opacity: 1;
+           }
+
+           100% {
+               height: 0px;
+               opacity: 0;
+           }
+       }
+
+      .container-wrapper .noheight {
+           animation: noheight .5s linear 0s forwards;
+       }
+    </style>
+</head>
+<body>
+    <div class="empty">
+        <div class="empty_none">
+            <div>
+                <p><i></i><span>购物车空空的</span></p>
+                <div class="empty_none_coupon">
+                    <img src="../../image/cart/empty_none_coupon.png" alt="">
+                </div>
+                <div class="empty_none_btn" onclick="openPage1()" tapmode>发现好物</div>
+            </div>
+        </div>
+
+        <div class="container-wrapper" id="container-wrapper">
+            <div class="wrapper">
+                <div class="container" ontouchstart="return touchstartF(event,this);" ontouchmove="return touchmoveF(event,this);">左右滑动1</div>
+                <div class="delete" onclick="return toDelete(event,this);">
+                    <i class="iconfont icon-shanchu"></i>
+                    删除
+                </div>
+            </div>
+
+            <div class="wrapper">
+                <div class="container" ontouchstart="return touchstartF(event,this);" ontouchmove="return touchmoveF(event,this);">左右滑动2</div>
+                <div class="delete" onclick="return toDelete(event,this);">
+                    <i class="iconfont icon-shanchu"></i>
+                    删除
+                </div>
+            </div>
+        </div>
+
+        <div class="empty_recommend">
+            <p><i></i><span>为您推荐</span></p>
+            <div class="empty_recommend_banner">
+                <img src="../../image/cart/empty_recommend_banner.png" alt="">
+            </div>
+        </div>
+        <div class="empty_info" id="draw">
+            <ul>
+                <li style="background:red">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li onclick="openPage()" tapmode>10</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script scr="../../script/app.js"></script>
+<script>
+    apiready=function () {
+
+
+    }
+    var startX = 0;
+    var draw = $api.byId("draw")
+    var ul = draw.children[0]
+    draw.addEventListener('touchstart', function(event) {
+            // startX = event.changedTouches[0].clientX
+            startX1 = event.changedTouches[0].clientX;
+            // console.log(startX)
         });
-        var headerH = $api.offset($api.dom('header')).h;
-        var footerH = api.pageParam.footerH
-        api.openFrame({
-            name: 'cart_frame',
-            url: 'cart_frame.html',
-            rect: {
-                x: 0,
-                y: headerH,
-                w: api.winWidth,
-                h: api.winHeight - headerH - footerH
-            },
+
+    draw.addEventListener('touchmove', function(event) {
+        const y = event.changedTouches[0].clientX - startX1
+        // const x = event.changedTouches[0].clientX - startX-110
+        // if (y>0) {
+            ul.style.transition = "none";
+            ul.style.transform = 'translateX('+0.3*y+'px)';
+        // }else{
+            // ul.style.transition = "none";
+            // ul.style.transform = 'translateX('+x+'px)';
+        // }
+    });
+
+    draw.addEventListener('touchend', function(event) {
+        const y = event.changedTouches[0].clientX - startX1
+        // if (y>0){
+            ul.style.transition = 'transform .6s';
+            ul.style.transform = 'translateX('+0+'px)';
+        // }else{
+            // ul.style.transition = 'transform .6s';
+            // ul.style.transform = 'translateX('+-110+'px)';
+        // }
+    });
+    function openPage() {
+        api.openWin({
+            name: 'good',
+            url: 'good.html',
             pageParam: {
-                name: 'test'
+                index: 1
             },
-            bounces: true,
-            bgColor: 'rgba(0,0,0,1)',
-            vScrollBarEnabled: true,
-            hScrollBarEnabled: true
+           delay : 100
         });
-      };
-  </script>
-  </html>
+    }
+    // function openPage1() {
+    //     api.openWin({
+    //         name: 'index',
+    //         url: '../home/index.html',
+    //         pageParam: {
+    //             index: 1
+    //         }
+    //     });
+    // }
+
+
+
+
+    function touchstartF(event) {
+	    x = event.changedTouches[0].pageX;
+	    y = event.changedTouches[0].pageY;
+	    swipeX = true;
+	    swipeY = true;
+	};
+	function touchmoveF(event, e) {
+	    X = event.changedTouches[0].pageX;
+	    Y = event.changedTouches[0].pageY;
+	    // 左右滑动
+	    if (swipeX && Math.abs(X - x) - Math.abs(Y - y) > 0) {
+	        // 阻止事件冒泡
+	        event.stopPropagation();
+	        if (X - x > 10) {
+	            event.preventDefault();
+	            e.style.WebkitTransform = "translateX(" + 0 + "px)";
+	            e.style.transition = "-webkit-transform 300ms ease-in-out";
+	        }
+	        if (x - X > 10) {
+	            event.preventDefault();
+	            e.style.WebkitTransform = "translateX(" + -80 + "px)";
+	            e.style.transition = "-webkit-transform 300ms ease-in-out";
+	        }
+	        swipeY = false;
+	    }
+	    // // 上下滑动
+	    // if (swipeY && Math.abs(X - x) - Math.abs(Y - y) < 0) {
+	    //     swipeX = false;
+	    // }
+	};
+
+
+	function toDelete(event, e) {
+	    var deleteL = document.querySelectorAll('.delete');
+	    var wrapper = document.querySelectorAll('.wrapper');
+	    for (var i = 0; i < wrapper.length; i++) {
+	        wrapper[i].style.transition = 'height 500ms';
+	        wrapper[i].style.webkitTransition = 'height 500ms';
+	        wrapper[i].style.overflow = 'hidden';
+	    }
+	    var deleteLB = e;
+	    var down = deleteLB.parentNode;
+	    if (down.clientHeight == '100') {
+	        // deleteLB.parentNode.style.height = '0';
+	        deleteLB.parentNode.classList.add('noheight');
+	        setTimeout(function () {
+	            down.remove();
+	        }, 700);
+	    }
+
+	}
+</script>

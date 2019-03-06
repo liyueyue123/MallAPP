@@ -9,19 +9,6 @@
   <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
   <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
   <style>
-      .navTab{
-        display: flex;
-        justify-content: space-around;
-        margin-top: 1rem;
-        border-bottom:1px #e7e7e7 solid;
-      }
-      .navTab>li{
-        font-size: 1.3rem;
-        padding:0 0.2rem 0.8rem 0.2rem;
-      }
-      .navTab>li.active{
-        border-bottom: 1px solid red;
-      }
       .main{
         width: 100%;
       }
@@ -58,15 +45,6 @@
   </style>
 </head>
 <body>
-  <!-- 头部导航 -->
-  <div class="headerNav">
-    <ul class="navTab">
-      <li class="active" onclick="navToggle(this);" tapmode>首页</li>
-      <li onclick="navToggle(this);" tapmode>节后收心快速速成指南</li>
-      <li onclick="navToggle(this);" tapmode>健康生活</li>
-    </ul>
-  </div>
-
   <!-- 主体部分 -->
   <div class="main">
     <!-- 顶部搜索栏 -->
@@ -141,11 +119,7 @@
 
   };
 
-  //头部导航栏的切换
-  function navToggle (e) {
-    $api.removeCls($api.dom('.navTab>li.active'), 'active');
-    $api.addCls(e, 'active');
-  }
+
 
 
 </script>
