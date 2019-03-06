@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>商城</title>
   <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
   <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
   <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
@@ -53,14 +53,7 @@
         display: block;
       }
       .swiper-container,.swiper-wrapper,.swiper-slide{
-        height:10rem;
-        background: pink;
-      }
-      .swiper-paginatio{
-        width: 1rem;
-        height: 1rem;
-        background: #d34c49;
-        border-radius: 50%;
+        height:18rem;
       }
   </style>
 </head>
@@ -76,24 +69,22 @@
 
   <!-- 主体部分 -->
   <div class="main">
-
     <!-- 顶部搜索栏 -->
-      <div class="searchBar">
-        <i></i>
-        搜索你想要的商品吧
-      </div>
+    <div class="searchBar">
+      <i></i>
+      搜索你想要的商品吧
+    </div>
 
-      <!-- 轮播图 -->
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-        </div>
-        <!-- 如果需要分页器 -->
-         <div class="swiper-pagination"></div>
+    <!-- 轮播图 -->
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="../../image/home/banner1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="../../image/home/banner1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="../../image/home/banner1.jpg" alt=""></div>
       </div>
-
+      <!-- 如果需要分页器 -->
+       <div class="swiper-pagination"></div>
+    </div>
   </div>
 </body>
 </html>
@@ -104,12 +95,49 @@
   apiready = function () {
     var mySwiper = new Swiper ('.swiper-container', {
       // 分页器
-      pagination: {
-        el: '.swiper-pagination',
-        bulletElement : 'li',
-      },
-
+      pagination: '.swiper-pagination',
+      type: 'bullets',
+      loop: true,
+      // autoplay: true
     })
+
+    // //引入的轮播模块
+    // var UIScrollPicture = api.require("UIScrollPicture");
+    // UIScrollPicture.open({
+    //     rect: {
+    //         x: 0,
+    //         y: '95',
+    //         // w: api.winWidth,
+    //         h: '180'
+    //     },
+    //     data: {
+    //         paths: [
+    //         '../../image/home/banner1.jpg',
+    //         '../../image/home/banner1.jpg',
+    //         '../../image/home/banner1.jpg',
+    //         ]
+    //     },
+    //     styles: {
+    //         indicator: {
+    //             dot:{
+    //                w:8,
+    //                h:8,
+    //                r:4,
+    //                margin:5
+    //              },
+    //             align: 'center',
+    //             color: '#a7a7a7',
+    //             activeColor: '#e43e42'
+    //         }
+    //     },
+    //     placeholderImg: 'widget://res/slide1.jpg',
+    //     contentMode: 'scaleToFill',
+    //     interval: 3,
+    //     fixedOn: api.frameName,
+    //     loop: true,
+    //     fixed: false,
+    // }, function(ret, err){
+    // });
 
   };
 
