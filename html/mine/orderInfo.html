@@ -1,80 +1,136 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>个人中心</title>
-    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
-    <style>
-        header {
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-        header nav {
-            width: 200%;
-            overflow-x: scroll;
-            height: 5rem;
-            background: pink;
-        }
-        header nav ul {
-            display: flex;
-            align-items: center;
-            width: 150%;
-            height: 50px;
-            font-size: 1.4rem;
-        }
-        header nav ul li {
-            margin-left: 6.2rem;
-        }
-        header nav ul li:first-child {
-            margin-left: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+<style>
+    header {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: 100%;
+        background: white;
+    }
+    header .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 4.3rem;
+        font-size: 1.7rem;
+        font-weight: bold;
+    }
+    header .title::before {
+        position: absolute;
+        left: 2rem;
+        content: "";
+        width: .8rem;
+        height: .8rem;
+        border-top: 1px solid #574073;
+        border-right: 1px solid #574073;
+        transform: rotate(225deg);
+    }
+    header nav {
+        height: 4.6rem;
+        overflow-x: scroll;
+    }
+    header nav ul {
+        display: flex;
+        width: 120%;
+        height: 100%;
+    }
+    header nav ul li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+        height: 100%;
+        font-size: 1.4rem;
+    }
+    .active {
+        /*display: flex;
+        align-items: center;
+        height: 100%;
+        color: #dd3d47;
+        border-bottom: .2rem solid #e83a44;*/
+        background: pink;
+    }
 
-        section {
-
-        }
-
-    </style>
+</style>
 </head>
 <body>
-    <div class="box">
-    <header>
-        <div class="title">
-            全部订单
-        </div>
-        <nav>
-            <ul>
-                <li>全部订单</li>
-                <li>待支付</li>
-                <li>代发货</li>
-                <li>待收货</li>
-                <li>交易完成</li>
-                <li>交易冻结</li>
-            </ul>
-        </nav>
-    </header>
-    <section>
-        <ul>
-            <li>123</li>
-            <li>123</li>
-            <li>123</li>
-            <li>123</li>
+<header>
+    <div class="title">
+        <span>全部订单</span>
+    </div>
+    <nav>
+        <ul id='menu'>
+            <li>
+                <a>全部订单</a>
+            </li>
+            <li>待支付</li>
+            <li>待发货</li>
+            <li>待收货</li>
+            <li>交易完成</li>
+            <li>交易冻结</li>
         </ul>
-    </section>
-</div>
+    </nav>
+</header>
 </body>
 </html>
-
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/app.js"></script>
 <script type="text/javascript">
+    var menus;
     apiready = function() {
-        let index = api.pageParam.index;   //上个页面传参
+        var header = $api.dom('header');
+        $api.fixStatusBar(header);
+        api.setStatusBarStyle({
+            style: 'dark'
+        });
+        var headerH = $api.offset($api.dom('header')).h;
+        menus = $api.domAll(menu, "li");
 
+        var frames = [];
+
+        for (var i=0; i<menus.length; i++) {
+            frames.push({
+                name: 'orderInfo_frame_' + i,
+                url: './orderInfo_frame.html'
+            });
+        }
+
+        api.openFrameGroup ({
+            name: 'orderInfoFrameGroup',
+            scrollEnabled: true,
+            rect: {
+                 x: 0,
+                 y: headerH,
+                 w: 'auto',
+                 h: 'auto'
+            },
+            index: 0,
+            frames: frames
+        }, function(ret, err){
+            fnSetNavMenusSelected(ret.index);
+        });
     }
+
+    function fnSetNavMenusSelected(index) {
+        for(var i=0; i<menus.length; i++) {
+            if(index == i) {
+                $api.addCls(menus[i], 'active');
+            }else {
+                $api.removeCls(menus[i], 'active');
+            }
+        }
+    }
+
+
 
 </script>
