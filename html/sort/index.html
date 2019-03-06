@@ -13,7 +13,7 @@
   <header class="sortHeader">
     <div class="sortHeaderTitle">分类</div>
     <div class="searchBox">
-      <div class="searchBar">
+      <div class="searchBar" onclick="searchWin()" tapmode>
           <i></i><span>输入商品关键词</span>
       </div>
       <div class="footMark">
@@ -21,30 +21,110 @@
       </div>
     </div>
   </header>
-
   <ul class="leftFrame">
-      <li class="sortList"><i class="round"></i>为您推荐</li>
-      <li class="sortList">热门品牌</li>
-      <li class="sortList">面部护理</li>
-      <li class="sortList">底妆彩妆</li>
-      <li class="sortList">aaaaaaa</li>
-      <li class="sortList">ffffff</li>
-      <li class="sortList">sadsff</li>
-      <li class="sortList">sdfjjj</li>
-      <li class="sortList">sdfsdfjgh</li>
-      <li class="sortList">dfff</li>
-      <li class="sortList">ddd</li>
-      <li class="sortList">aaaaaaa</li>
-      <li class="sortList">ffffff</li>
-      <li class="sortList">sadsff</li>
+      <li data-index="0" class="on" onclick="sortSwichFrame(this)" tapmode><i class="round"></i>为您推荐</li>
+      <li data-index="1" onclick="sortSwichFrame(this)" tapmode><i></i>热门品牌</li>
+      <li data-index="3" onclick="sortSwichFrame(this)" tapmode><i></i>面部护理</li>
+      <li data-index="4" onclick="sortSwichFrame(this)" tapmode><i></i>底妆彩妆</li>
+      <li data-index="5" onclick="sortSwichFrame(this)" tapmode><i></i>aaaaaaa</li>
+      <li data-index="6" onclick="sortSwichFrame(this)" tapmode><i></i>ffffff</li>
+      <li data-index="7" onclick="sortSwichFrame(this)" tapmode><i></i>sadsff</li>
+      <li data-index="8" onclick="sortSwichFrame(this)" tapmode><i></i>sdfjjj</li>
+      <li data-index="9" onclick="sortSwichFrame(this)" tapmode><i></i>sdfsdfjgh</li>
+      <li data-index="10" onclick="sortSwichFrame(this)" tapmode><i></i>dfff</li>
+      <li data-index="11" onclick="sortSwichFrame(this)" tapmode><i></i>ddd</li>
+      <li data-index="12" onclick="sortSwichFrame(this)" tapmode><i></i>aaaaaaa</li>
+      <li data-index="13" onclick="sortSwichFrame(this)" tapmode><i></i>ffffff</li>
+      <li data-index="14" onclick="sortSwichFrame(this)" tapmode><i></i>sadsff</li>
   </ul>
-
 </body>
 </html>
 <script src="../../script/api.js"></script>
 <script src="../../script/app.js"></script>
 <script type="text/javascript">
   apiready = function(){
-    $api.fixStatusBar( $api.dom('header') );
+    $api.fixStatusBar( $api.dom('.sortHeader') );
+    sortSwichFrame($api.first($api.dom(".leftFrame"),'li'))
+  }
+  // openFrame
+  function sortSwichFrame(el){
+    var thisVal= $api.attr(el, 'data-index');
+    $api.removeCls($api.dom('.on'), 'on');
+    $api.removeCls($api.dom('.round'), 'round');
+    $api.addCls(el, 'on');
+    $api.addCls($api.first(el,'i'),'round');
+    var headerH = $api.offset($api.dom("header")).h;
+    var leftFrameW = $api.offset($api.dom(".leftFrame")).w;
+    var frameW = api.winWidth - leftFrameW;
+    var frameH = api.winHeight - api.pageParam.footerH - headerH;
+    if(thisVal=="0"){
+      api.closeFrame({
+          name: 'popular_frame',
+      });
+      api.openFrame({
+          name: 'recommend_frame',
+          url: './recommend_frame.html',
+          rect: {
+              x: leftFrameW,
+              y: headerH,
+              w: frameW,
+              h: frameH
+          },
+          pageParam: {
+              name: 'test'
+          },
+          bounces: true,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: true,
+          hScrollBarEnabled: true
+      });
+    }else if (thisVal=="1") {
+      api.openFrame({
+          name: 'popular_frame',
+          url: './popular_frame.html',
+          rect: {
+              x: leftFrameW,
+              y: headerH,
+              w: frameW,
+              h: frameH
+          },
+          pageParam: {
+              name: 'test'
+          },
+          bounces: true,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: true,
+          hScrollBarEnabled: true
+      });
+    }else {
+      api.openFrame({
+          name: 'general_frame',
+          url: './general_frame.html',
+          rect: {
+              x: leftFrameW,
+              y: headerH,
+              w: frameW,
+              h: frameH
+          },
+          pageParam: {
+              name: 'test'
+          },
+          bounces: true,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: true,
+          hScrollBarEnabled: true
+      });
+    }
+  }
+  // 搜索跳转
+  function searchWin(){
+      api.openWin({
+          name: 'sort_search',
+          url: './sort_search.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+
   }
 </script>

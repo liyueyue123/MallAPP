@@ -27,7 +27,6 @@
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
     <div id="main" class="flex-con"></div>
-
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >商城</li>
@@ -50,7 +49,7 @@
         var arrUrl = ['home', 'sort', 'cart', 'mine'],
             frames = [];
         var footerH = $api.offset($api.byId('footer')).h;
-        console.log(footerH);
+        // console.log(footerH);
         for (var i = 0,len = arrUrl.length; i < len; i++) {
                 frames.push( {
                     name: arrUrl[i],
