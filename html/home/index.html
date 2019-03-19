@@ -42,6 +42,81 @@
       .swiper-container,.swiper-wrapper,.swiper-slide{
         height:18rem;
       }
+
+      /*菜单部分*/
+      .menu{
+        margin:18.3rem auto 0 auto;
+        padding: 1rem 2rem;
+        box-sizing: border-box;
+        background: #f1f1f1;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+      .menu li{
+        width: 30%;
+        margin-bottom: 1rem;
+      }
+      .menu li img{
+        width: 55%;
+      }
+
+      /*优惠券部分*/
+      .coupon{
+        width: 100%;
+        margin: 2rem auto;
+        text-align: center;
+      }
+      .coupon img{
+        width: 80%;
+      }
+
+      /*限时购*/
+      .limitedTime{
+        width: 100%;
+      }
+      .limited_time_title{
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .limited_time_title img{
+        width: 100%;
+      }
+      .limited_time_content>ul{
+        width: 100%;
+
+      }
+      .limited_time_content>ul>li{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1rem;
+        box-sizing: border-box;
+        background: pink;
+        border-bottom: 0.1rem solid #e7e7e7;
+      }
+      .content_left{
+        width: 10rem;
+        height: 10rem;
+        background: yellow;
+      }
+      .content_left>img{
+        width: 100%;
+        overflow: hidden;
+      }
+      .content_right{
+        width: 23rem;
+        height: 11rem;
+        background: orange;
+      }
+      .countdown{
+        width: 21rem;
+        height: 3rem;
+        background: white;
+      }
   </style>
 </head>
 <body>
@@ -54,14 +129,51 @@
     </div>
 
     <!-- 轮播图 -->
-    <div class="swiper-container">
+    <!-- <div class="swiper-container">
       <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="../../image/home/banner1.jpg" alt=""></div>
         <div class="swiper-slide"><img src="../../image/home/banner1.jpg" alt=""></div>
         <div class="swiper-slide"><img src="../../image/home/banner1.jpg" alt=""></div>
-      </div>
+      </div> -->
       <!-- 如果需要分页器 -->
-       <div class="swiper-pagination"></div>
+       <!-- <div class="swiper-pagination"></div>
+    </div> -->
+
+    <!-- 菜单栏 -->
+    <ul class="menu">
+      <li><img src="../../image/home/menu1.jpg" alt=""><p>全部</p></li>
+      <li><img src="../../image/home/menu2.jpg" alt=""><p>品牌</p></li>
+      <li><img src="../../image/home/menu3.jpg" alt=""><p>排行榜</p></li>
+      <li><img src="../../image/home/menu4.jpg" alt=""><p>会员中心</p></li>
+      <li><img src="../../image/home/menu5.jpg" alt=""><p>显示团购</p></li>
+      <li><img src="../../image/home/menu6.jpg" alt=""><p>包邮专区</p></li>
+    </ul>
+
+    <!-- 优惠券 -->
+    <div class="coupon">
+      <img src="../../image/home/coupon.jpg" alt="">
+    </div>
+
+    <!-- 限时购 -->
+    <div class="limitedTime">
+      <div class="limited_time_title">
+        <img src="../../image/home/limited_time.jpg" alt="">
+      </div>
+      <div class="limited_time_content">
+        <ul>
+          <li>
+            <div class="content_left">
+              <img src="../../image/home/lt1.jpg" alt="">
+            </div>
+            <div class="content_right">
+              <p class="title">A.by BOM 超能婴儿三部曲面膜 10枚</p>
+              <div class="countdown">
+                距结束
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </body>
@@ -71,54 +183,58 @@
 <script type="text/javascript" src="../../script/swiper.min.js"></script>
 <script>
   apiready = function () {
-    var mySwiper = new Swiper ('.swiper-container', {
-      // 分页器
-      pagination: '.swiper-pagination',
-      type: 'bullets',
-      loop: true,
-      // autoplay: true
-    })
+    // var mySwiper = new Swiper ('.swiper-container', {
+    //   // 分页器
+    //   pagination: '.swiper-pagination',
+    //   type: 'bullets',
+    //   loop: true,
+    //   // autoplay: true
+    // })
 
-    // //引入的轮播模块
-    // var UIScrollPicture = api.require("UIScrollPicture");
-    // UIScrollPicture.open({
-    //     rect: {
-    //         x: 0,
-    //         y: '95',
-    //         // w: api.winWidth,
-    //         h: '180'
-    //     },
-    //     data: {
-    //         paths: [
-    //         '../../image/home/banner1.jpg',
-    //         '../../image/home/banner1.jpg',
-    //         '../../image/home/banner1.jpg',
-    //         ]
-    //     },
-    //     styles: {
-    //         indicator: {
-    //             dot:{
-    //                w:8,
-    //                h:8,
-    //                r:4,
-    //                margin:5
-    //              },
-    //             align: 'center',
-    //             color: '#a7a7a7',
-    //             activeColor: '#e43e42'
-    //         }
-    //     },
-    //     placeholderImg: 'widget://res/slide1.jpg',
-    //     contentMode: 'scaleToFill',
-    //     interval: 3,
-    //     fixedOn: api.frameName,
-    //     loop: true,
-    //     fixed: false,
-    // }, function(ret, err){
-    // });
+    SwiperModel();  //引入的轮播模块
 
   };
 
+  //引入的轮播模块
+  function SwiperModel(){
+    var UIScrollPicture = api.require("UIScrollPicture");
+    var winH = api.winWidth * 0.48;
+    UIScrollPicture.open({
+        rect: {
+            x: 0,
+            y: '50',
+            w: api.winWidth,
+            h: winH
+        },
+        data: {
+            paths: [
+            '../../image/home/banner1.jpg',
+            '../../image/home/banner1.jpg',
+            '../../image/home/banner1.jpg',
+            ]
+        },
+        styles: {
+            indicator: {
+                dot:{
+                   w:8,
+                   h:8,
+                   r:4,
+                   margin:5
+                 },
+                align: 'center',
+                color: '#a7a7a7',
+                activeColor: '#e43e42'
+            }
+        },
+        placeholderImg: 'widget://res/slide1.jpg',
+        contentMode: 'scaleToFill',
+        interval: 3,
+        fixedOn: api.frameName,
+        loop: true,
+        fixed: false,
+    }, function(ret, err){
+    });
+  }
 
 
 

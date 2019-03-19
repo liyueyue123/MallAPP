@@ -17,8 +17,6 @@
         <header>
             <ul>
                 <li class="border-b active">
-                    桃美物店铺
-                    <!-- 头部导航 -->
                     <ul class="navTab_home">
                       <li class="active_home" onclick="navToggle(this);" tapmode>首页</li>
                       <li onclick="navToggle(this);" tapmode>节后收心快速速成指南</li>
@@ -26,7 +24,6 @@
                     </ul>
                 </li>
                 <li class="border-b">
-                  分类
                   <div class="searchBox">
                     <div class="searchBar" onclick="searchWin()" tapmode>
                         <i></i><span>输入商品关键词</span>
@@ -36,8 +33,12 @@
                     </div>
                   </div>
                 </li>
-                <li class="">购物车</li>
-                <li class="">个人中心</li>
+                <li class="">
+                  <div class="head_none">
+                      1233
+                  </div>
+                </li>
+                <li class=""></li>
             </ul>
         </header>
         <div id="main" class="flex-con"></div>
@@ -56,21 +57,31 @@
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript">
     apiready = function() {
-        funIniGroup();
+      // 设置状态栏的属性
+      api.setStatusBarStyle({
+          style: 'dark',
+          color: '#000'
+      });
+      $api.fixStatusBar($api.dom('header'));
+
+      funIniGroup();
     }
 
     function funIniGroup() {
-        var eHeaderLis = $api.domAll('header li');
+        var eHeaderLis = $api.domAll('header>ul>li');
         var arrUrl = ['home', 'sort', 'cart', 'mine'],
             frames = [];
         var footerH = $api.offset($api.byId('footer')).h;
         // console.log(footerH);
         for (var i = 0, len = arrUrl.length; i < len; i++) {
+            var headerH = $api.offset(eHeaderLis[i]).h;
+            // console.log(headerH)
             frames.push({
                 name: arrUrl[i],
                 url: './html/' + arrUrl[i] + '/index.html',
                 pageParam: {
-                    footerH: footerH
+                    footerH: footerH,
+                    headerH: headerH
                 },
                 bounces: true
             })
