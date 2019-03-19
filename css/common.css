@@ -3,7 +3,7 @@ header{
 }
 
 header>ul>li {
-    line-height: 5rem;
+    /*line-height: 5rem;*/
     text-align: center;
     display: none;
     position: relative;
@@ -17,6 +17,7 @@ header>ul>li.active {
 .navTab_home{
   width: 100%;
   height: 2rem;
+  margin-top: 1.5rem;
   line-height: 2rem;
   display: flex;
   justify-content: space-around;
@@ -32,6 +33,7 @@ header>ul>li.active {
 .searchBox {
     width: 100%;
     height: 5rem;
+    padding-top: 1.5rem;
     display:flex;
     justify-content: space-around;
 }
@@ -88,7 +90,17 @@ header>ul>li.active {
   line-height: 2.4rem;
 }
 
+/*购物车*/
 
+/*购物车不为空*/
+.head_none {
+    height:4.4rem;
+    background-color:#fff8f0;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+/*底部导航*/
 #footer ul li {
     padding-top: 36px;
     padding-bottom: 4px;
