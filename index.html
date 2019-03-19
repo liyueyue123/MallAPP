@@ -125,7 +125,7 @@
         });
 
         if (index==1) {
-          var headerH = $api.offset(eHeaderLis[index]).h;
+          var headerH = $api.dom('header').offsetHeight;
           api.execScript({
               name: 'root',
               frameName: 'sort',

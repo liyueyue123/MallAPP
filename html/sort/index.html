@@ -18,10 +18,11 @@
 <script type="text/javascript">
   apiready = function(){
 
+
   }
   // 左侧frame
   function openSortFrame(headerH){
-    var frameH = api.winHeight - api.pageParam.footerH - 100
+    var frameH = api.winHeight - api.pageParam.footerH - headerH
     var widthL = api.winWidth * 0.25;
     var widthR = api.winWidth - widthL;
     api.openFrame({
@@ -46,7 +47,7 @@
         url: './general_frame.html',
         rect: {
             x: widthL,
-            y: 100,
+            y: headerH,
             w: widthR,
             h: frameH
         },
