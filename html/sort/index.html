@@ -10,99 +10,125 @@
     <link rel="stylesheet" type="text/css" href="../../css/sort.css">
 </head>
 <body>
-  <ul class="leftFrame">
-      <li data-index="0" class="on" onclick="sortSwichFrame(this)" tapmode><i class="round"></i>为您推荐</li>
-      <li data-index="1" onclick="sortSwichFrame(this)" tapmode><i></i>热门品牌</li>
-      <li data-index="3" onclick="sortSwichFrame(this)" tapmode><i></i>面部护理</li>
-      <li data-index="4" onclick="sortSwichFrame(this)" tapmode><i></i>底妆彩妆</li>
-      <li data-index="5" onclick="sortSwichFrame(this)" tapmode><i></i>aaaaaaa</li>
-      <li data-index="6" onclick="sortSwichFrame(this)" tapmode><i></i>ffffff</li>
-      <li data-index="7" onclick="sortSwichFrame(this)" tapmode><i></i>sadsff</li>
-      <li data-index="8" onclick="sortSwichFrame(this)" tapmode><i></i>sdfjjj</li>
-      <li data-index="9" onclick="sortSwichFrame(this)" tapmode><i></i>sdfsdfjgh</li>
-      <li data-index="10" onclick="sortSwichFrame(this)" tapmode><i></i>dfff</li>
-      <li data-index="11" onclick="sortSwichFrame(this)" tapmode><i></i>ddd</li>
-      <li data-index="12" onclick="sortSwichFrame(this)" tapmode><i></i>aaaaaaa</li>
-      <li data-index="13" onclick="sortSwichFrame(this)" tapmode><i></i>ffffff</li>
-      <li data-index="14" onclick="sortSwichFrame(this)" tapmode><i></i>sadsff</li>
-  </ul>
+
 </body>
 </html>
 <script src="../../script/api.js"></script>
 <script src="../../script/app.js"></script>
 <script type="text/javascript">
   apiready = function(){
-    // $api.fixStatusBar( $api.dom('.sortHeader') );
-    sortSwichFrame($api.first($api.dom(".leftFrame"),'li'))
+
   }
-  // openFrame
-  function sortSwichFrame(el){
-    var thisVal= $api.attr(el, 'data-index');
-    $api.removeCls($api.dom('.on'), 'on');
-    $api.removeCls($api.dom('.round'), 'round');
-    $api.addCls(el, 'on');
-    $api.addCls($api.first(el,'i'),'round');
-    var leftFrameW = $api.offset($api.dom(".leftFrame")).w;
-    var frameW = api.winWidth - leftFrameW;
-    var frameH = api.winHeight - api.pageParam.footerH;
-    if(thisVal=="0"){
-      api.closeFrame({
-          name: 'popular_frame',
-      });
-      // api.openFrame({
-      //     name: 'recommend_frame',
-      //     url: './recommend_frame.html',
-      //     rect: {
-      //         x: leftFrameW,
-      //         y: headerH,
-      //         w: frameW,
-      //         h: frameH
-      //     },
-      //     pageParam: {
-      //         name: 'test'
-      //     },
-      //     bounces: true,
-      //     bgColor: 'rgba(0,0,0,0)',
-      //     vScrollBarEnabled: true,
-      //     hScrollBarEnabled: true
-      // });
-    }else if (thisVal=="1") {
-      api.openFrame({
-          name: 'popular_frame',
-          url: './popular_frame.html',
-          rect: {
-              x: leftFrameW,
-              y: 0,
-              w: frameW,
-              h: frameH
-          },
-          pageParam: {
-              name: 'test'
-          },
-          bounces: true,
-          bgColor: 'rgba(0,0,0,0)',
-          vScrollBarEnabled: true,
-          hScrollBarEnabled: true
-      });
-    }else {
-      api.openFrame({
-          name: 'general_frame',
-          url: './general_frame.html',
-          rect: {
-              x: leftFrameW,
-              y: 0,
-              w: frameW,
-              h: frameH
-          },
-          pageParam: {
-              name: 'test'
-          },
-          bounces: true,
-          bgColor: 'rgba(0,0,0,0)',
-          vScrollBarEnabled: true,
-          hScrollBarEnabled: true
-      });
-    }
+  // 左侧frame
+  function openSortFrame(headerH){
+    var frameH = api.winHeight - api.pageParam.footerH - 100
+    var widthL = api.winWidth * 0.25;
+    var widthR = api.winWidth - widthL;
+    api.openFrame({
+        name: 'left_frame',
+        url: './left_frame.html',
+        rect: {
+            x: 0,
+            y: headerH,
+            w: 'auto',
+            h: frameH
+        },
+        pageParam: {
+            name: 'test'
+        },
+        bounces: true,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: true,
+        hScrollBarEnabled: true
+    });
+    api.openFrame({
+        name: 'general_frame',
+        url: './general_frame.html',
+        rect: {
+            x: widthL,
+            y: 100,
+            w: widthR,
+            h: frameH
+        },
+        pageParam: {
+            name: 'test'
+        },
+        bounces: true,
+        bgColor: 'rgba(0,0,0,0)',
+        vScrollBarEnabled: true,
+        hScrollBarEnabled: true
+    });
   }
+
+
+  //切换右侧frame
+  // function sortSwichFrame(el){
+  //   var thisVal= $api.attr(el, 'data-index');
+  //   $api.removeCls($api.dom('.on'), 'on');
+  //   $api.removeCls($api.dom('.round'), 'round');
+  //   $api.addCls(el, 'on');
+  //   $api.addCls($api.first(el,'i'),'round');
+  //   var leftFrameW = $api.offset($api.dom(".leftFrame")).w;
+  //   var frameW = api.winWidth - leftFrameW;
+  //   var frameH = api.winHeight - api.pageParam.footerH;
+  //   if(thisVal=="0"){
+  //     api.closeFrame({
+  //         name: 'popular_frame',
+  //     });
+  //     api.openFrame({
+  //         name: 'recommend_frame',
+  //         url: './recommend_frame.html',
+  //         rect: {
+  //             x: leftFrameW,
+  //             y: 58,
+  //             w: frameW,
+  //             h: frameH
+  //         },
+  //         pageParam: {
+  //             name: 'test'
+  //         },
+  //         bounces: true,
+  //         bgColor: 'rgba(0,0,0,0)',
+  //         vScrollBarEnabled: true,
+  //         hScrollBarEnabled: true
+  //     });
+  //   }else if (thisVal=="1") {
+  //     api.openFrame({
+  //         name: 'popular_frame',
+  //         url: './popular_frame.html',
+  //         rect: {
+  //             x: leftFrameW,
+  //             y: 58,
+  //             w: frameW,
+  //             h: frameH
+  //         },
+  //         pageParam: {
+  //             name: 'test'
+  //         },
+  //         bounces: true,
+  //         bgColor: 'rgba(0,0,0,0)',
+  //         vScrollBarEnabled: true,
+  //         hScrollBarEnabled: true
+  //     });
+  //   }else {
+  //     api.openFrame({
+  //         name: 'general_frame',
+  //         url: './general_frame.html',
+  //         rect: {
+  //             x: leftFrameW,
+  //             y: 58,
+  //             w: frameW,
+  //             h: frameH
+  //         },
+  //         pageParam: {
+  //             name: 'test'
+  //         },
+  //         bounces: true,
+  //         bgColor: 'rgba(0,0,0,0)',
+  //         vScrollBarEnabled: true,
+  //         hScrollBarEnabled: true
+  //     });
+  //   }
+  // }
 
 </script>

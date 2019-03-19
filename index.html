@@ -85,7 +85,7 @@
                 h: $api.dom('#main').offsetHeight
             },
             index: 0,
-            frames: frames, 
+            frames: frames,
         }, function(ret, err) {});
     }
 
@@ -112,6 +112,24 @@
               h: $api.dom('#main').offsetHeight
             }
         });
+
+        if (index==1) {
+          var headerH = $api.offset(eHeaderLis[index]).h;
+          api.execScript({
+              name: 'root',
+              frameName: 'sort',
+              script: 'openSortFrame(\''+headerH+'\');'
+          });
+        }else {
+          api.closeFrame({
+              name: 'left_frame'
+          });
+          api.closeFrame({
+              name: 'general_frame'
+          });
+
+        }
+
         api.setFrameGroupIndex({
             name: 'group',
             index: index
