@@ -14,3 +14,51 @@ var host = 'http://hande.icpnt.com';
     doc.addEventListener("DOMContentLoaded", fn, false);
 
 }(document, window));
+
+
+// 下拉刷新模块
+function pullToRefresh() {
+  // 进入页面进行刷新
+  api.refreshHeaderLoading();
+
+  // 下拉时
+  api.setCustomRefreshHeaderInfo({
+      bgColor : '#f0f0f0',
+      image : {
+          pull : 'widget://image/common/pull.png',
+          transform : [
+            'widget://image/common/pull_end_image_frame_01.png',
+            'widget://image/common/pull_end_image_frame_02.png',
+            'widget://image/common/pull_end_image_frame_03.png',
+            'widget://image/common/pull_end_image_frame_04.png',
+            'widget://image/common/pull_end_image_frame_05.png'
+        ],
+          load : [
+            'widget://image/common/refreshing_image_frame_01.png',
+            'widget://image/common/refreshing_image_frame_02.png',
+            'widget://image/common/refreshing_image_frame_03.png',
+            'widget://image/common/refreshing_image_frame_04.png',
+            'widget://image/common/refreshing_image_frame_05.png',
+            'widget://image/common/refreshing_image_frame_06.png'
+        ]
+      }
+  }, function() {
+      //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+      setTimeout(function(){
+        api.refreshHeaderLoadDone()
+      }, 2000);
+  });
+}
+
+
+// 上拉加载模块
+function pullUpLoading(){
+  api.addEventListener({
+          name:"scrolltobottom",
+          extra:{
+               threshold:0            //设置距离底部多少距离时触发，默认值为0，数字类型
+          }
+  },function(ret,err){
+    alert('加载成功')
+  });
+}
