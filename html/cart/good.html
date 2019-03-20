@@ -9,58 +9,27 @@
   </head>
   <style>
   .app_head{
-    height: 10rem;
+    /*height: 10rem;*/
     text-align: center;
     font-size: 1.8rem;
     color: #000;
     line-height: 4.8rem;
     font-family:PingFangSC-Regular;
-    position: relative;
     background-color: #ffffff;
-    position: relative;
     border-bottom:1px solid #eee;
+    position: relative;
   }
-  .app_head p{
-      position: absolute;
-      left:.9rem;
-      top:2.5rem;
-      display: inline-block;
-      width: 9rem;
-      height: 3.4rem;
-      border-radius: 2rem;
-      border: 1px solid #eee;
-  }
-  .app_head p::after{
-      content:"";
-      position: absolute;
-      left:50%;
-      top:.8rem;
-      transform: rotateX(-50%);
-      display: inline-block;
-      width: 1px;
-      height: 2rem;
-      background-color: #eee;
-  }
-  .app_head p i{
+  .app_head i{
       display: inline-block;
       width: 2rem;
       height: 2rem;
-      background: url('../../image/cart/good_back.png') no-repeat center  center;
+      background: url('../../image/cart/good_back.png') no-repeat center;
       background-size: 100% 100%;
       position: absolute;
-      left:1.4rem;
-      top:.8rem;
+      left:2rem;
+      top:3.6rem;
   }
-  .app_head p span{
-      display: inline-block;
-      width: 2.2rem;
-      height: 2.2rem;
-      background: url('../../image/cart/good_index.png') no-repeat center  center;
-      background-size: 100% 100%;
-      position: absolute;
-      right:1.4rem;
-      top:.6rem;
-  }
+
   #app_head_tab ul {
       display: flex;
       justify-content: space-around;
@@ -97,7 +66,7 @@
   </style>
   <body>
     <header class="app_head">
-        <p><i onclick="closePage()" tapmode></i><span></span></p>
+        <i onclick="closePage()" tapmode></i>
         精选商品
         <div id="app_head_tab">
             <ul>
@@ -122,47 +91,34 @@
       };
 
       function funIniGroup(){
-          var eHeaderLis = $api.domAll('header li');
-          var arrUrl = ['good_frame','good_frame_1','good_frame_2','good_frame_3'],
-              frames = [];
           var headerH = $api.offset($api.dom('header')).h;
-          for (var i = 0,len = arrUrl.length; i < len; i++) {
-                  frames.push( {
-                      name: arrUrl[i],
-                      url:arrUrl[i]+'.html',
-                      pageParam:{
-                        headerH : headerH
-                    },
-                    bounces: true,
-                    bgColor: 'rgba(0,0,0,1)',
-                  })
-          }
-          api.openFrameGroup({  //打开frameGroup页面
-              name: 'good_group',
-              scrollEnabled: true,
+          api.openFrame({  //打开frameGroup页面
+              name: 'good_frame',
+              url:'good_frame.html',
               rect: {
                   x: 0,
                   y: headerH,
                   w: api.winWidth,
-                  h: headerH
+                  h:"auto"
               },
-              index: 0,
-              frames: frames,
+              bounces: true,
+              bgColor: 'rgba(0,0,0,1)'
+
           }, function (ret, err) {
           });
       }
       var h = false
       function listClick(tag) {
           if( tag == $api.dom('#app_head_tab li.active') ){
-                // 价格重复点击
+              // 价格重复点击
               if (tag.innerText=="价格") {
                     h = !h
                     if(h==true) {
-                        alert("价格高 默认")
+                         list(2.5)
                          $api.addCls($api.byId('span'),'color')
                          $api.removeCls($api.byId('i'), 'color');
                     }else{
-                        alert("价格低 默认")
+                        list(2)
                         $api.addCls($api.byId('i'),'color')
                         $api.removeCls($api.byId('span'), 'color');
                     }
@@ -172,34 +128,37 @@
               console.log(h)
             return;
           }
-            // 价格
-          if (tag.innerText=="价格" && h==false) {
-              alert("价格低 默认")
-                 $api.addCls($api.byId('i'),'color')
-          }else{
-              h=false
-              $api.removeCls($api.byId('i'), 'color');
-              $api.removeCls($api.byId('span'), 'color');
-          }
           var eFootLis = $api.domAll('#app_head_tab li'),
               index = 0;
           for (var i = 0,len = eFootLis.length; i < len; i++) {
               if( tag == eFootLis[i] ){
+                  // 价格
+                  if (tag.innerText=="价格" && h==false) {
+                       $api.addCls($api.byId('i'),'color')
+                  }else{
+                      h=false
+                      $api.removeCls($api.byId('i'), 'color');
+                      $api.removeCls($api.byId('span'), 'color');
+                  }
+                  list(i)
                   index = i;
               }else{
                   $api.removeCls(eFootLis[i], 'active');
               }
           }
           $api.addCls( eFootLis[index], 'active');
-          api.setFrameGroupIndex({
-              name: 'good_group',
-              index: index
-          });
       }
-      function closePage() {
-         api.closeFrameGroup({
-            name: 'root'
+
+    // 调用子页面的事件
+    function list (tab) {
+        console.log(tab);
+        api.execScript({
+            frameName:"good_frame",
+            script: 'list("'+tab+'")'
         });
+    }
+
+      function closePage() {
         api.closeWin()
       }
   </script>
