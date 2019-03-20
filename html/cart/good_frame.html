@@ -7,17 +7,32 @@
       <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
       <style>
           body{
-
+            width: 100%;
+            height:100%;
           }
       </style>
   </head>
   <body>
-      <div>4dddfff</div>
+      <div id="list">4dddfff</div>
   </body>
   <script type="text/javascript" src="../../script/api.js"></script>
   <script type="text/javascript">
       apiready = function(){
-
+            list(0)
       };
+      function list (tab) {
+          var list = $api.byId('list');
+          if(tab==0){
+              list.innerText="销量"
+          }else if(tab==1) {
+              list.innerText="最新"
+          }else if(tab==2) {
+              list.innerText="价格低"
+          }else if(tab==2.5) {
+              list.innerText="价格高"
+          }else{
+             list.innerText="筛选"
+          }
+      }
   </script>
   </html>
