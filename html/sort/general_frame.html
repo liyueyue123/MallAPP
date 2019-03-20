@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,3 +48,93 @@
 </html>
 <script src="../../script/api.js"></script>
 <script src="../../script/app.js"></script>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>一般列表页</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+  <link rel="stylesheet" type="text/css" href="../../css/app.css"/>
+  <link rel="stylesheet" type="text/css" href="../../css/sort.css">
+</head>
+<body>
+  <section class="rightFrame">
+    <div class="goodsBox">
+      <ul class="generalTitle">
+          <li class="active" data-index='1' onclick="changeSort(this)">销量</li>
+          <li data-index='2' onclick="changeSort(this)">最新</li>
+          <li data-index='3' onclick="changeSort(this)">价格<i class="priceIcon"></i></li>
+          <li data-index='4' onclick="changeSort(this)">筛选</li>
+      </ul>
+      <ul class="goodsList">
+        <li>
+          <img class="itemImg" src="../../image/sort/sortItemImg.png" >
+          <div class="itemBox">
+              <div class="itemTitle">Appelles银杏叶枕头喷雾60,说的话刚刚打电话的是的就好哒好哒好电话电话电话电话电话电话</div>
+              <div class="itemContent">
+                  <div class="itemTip"><i></i><span>精选好物</span></div>
+                  <div class="itemValue">￥97<span>.20</span></div>
+              </div>
+          </div>
+        </li>
+        <li class="listaaa">
+          11111
+        </li>
+        <li>111</li>
+        <li>222</li>
+        <li>111</li>
+        <li>111</li>
+        <li>222</li>
+        <li>111</li>
+        <li>222</li>
+        <li>111</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
+<script src="../../script/api.js"></script>
+<script src="../../script/app.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+    getSort();
+  }
+
+  // list的排序
+  function changeSort(el){
+    var thisIndex = $api.attr(el, 'data-index');
+    // 其他按钮重复点击
+    if(!$api.hasCls(el, 'active') || thisIndex==3){
+      $api.removeCls($api.dom('.active'), 'active');
+      $api.addCls(el, 'active');
+      if(thisIndex==3){
+        if($api.hasCls($api.dom('.priceIcon'), 'priceUp')){
+          $api.removeCls($api.dom('.priceIcon'), 'priceUp');
+          $api.addCls($api.dom('.priceIcon'), 'priceDown');
+        }else if($api.hasCls($api.dom('.priceIcon'), 'priceDown')) {
+          $api.removeCls($api.dom('.priceIcon'), 'priceDown');
+          $api.addCls($api.dom('.priceIcon'), 'priceUp');
+        }else {
+          $api.addCls($api.dom('.priceIcon'), 'priceUp');
+        }
+      }else {
+        $api.removeCls($api.dom('.priceIcon'), 'priceDown');
+        $api.removeCls($api.dom('.priceIcon'), 'priceUp');
+      }
+    }
+  }
+
+  // 接收左侧分类渲染右侧内容
+   function getSort(){
+      api.addEventListener({
+          name: 'sortLeft'
+      }, function(ret, err) {
+          console.log(JSON.stringify(ret.value.thisIndex));
+          $api.html($api.dom('.listaaa'), ret.value.thisIndex);
+      });
+   }
+</script>
+>>>>>>> 6756dfe936bdb23cac03dbb84e4d48fe29130b60

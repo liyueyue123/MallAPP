@@ -11,20 +11,21 @@
 </head>
 <body>
   <ul class="leftFrame">
-      <li data-index="0" class="on"  tapmode><i class="round"></i>为您推荐</li>
-      <li data-index="1" tapmode><i></i>热门品牌</li>
-      <li data-index="3" tapmode><i></i>面部护理</li>
-      <li data-index="4" tapmode><i></i>底妆彩妆</li>
-      <li data-index="5" tapmode><i></i>aaaaaaa</li>
-      <li data-index="6" tapmode><i></i>ffffff</li>
-      <li data-index="7" tapmode><i></i>sadsff</li>
-      <li data-index="8" tapmode><i></i>sdfjjj</li>
-      <li data-index="9" tapmode><i></i>sdfsdfjgh</li>
-      <li data-index="10" tapmode><i></i>dfff</li>
-      <li data-index="11" tapmode><i></i>ddd</li>
-      <li data-index="12" tapmode><i></i>aaaaaaa</li>
-      <li data-index="13" tapmode><i></i>ffffff</li>
-      <li data-index="14" tapmode><i></i>sadsff</li>
+      <li data-index="0" class="on"  onclick="sendSort(this)" tapmode><i class="round"></i>为您推荐</li>
+      <li data-index="1" onclick="sendSort(this)" tapmode><i></i>热门品牌</li>
+      <li data-index="2" onclick="sendSort(this)" tapmode><i></i>静电接地</li>
+      <li data-index="3" onclick="sendSort(this)" tapmode><i></i>面部护理</li>
+      <li data-index="4" onclick="sendSort(this)" tapmode><i></i>底妆彩妆</li>
+      <li data-index="5" onclick="sendSort(this)" tapmode><i></i>aaaa</li>
+      <li data-index="6" onclick="sendSort(this)" tapmode><i></i>ffff</li>
+      <li data-index="7" onclick="sendSort(this)" tapmode><i></i>saks</li>
+      <li data-index="8" onclick="sendSort(this)" tapmode><i></i>sdfj</li>
+      <li data-index="9" onclick="sendSort(this)" tapmode><i></i>sdfs</li>
+      <li data-index="10" onclick="sendSort(this)" tapmode><i></i>dfff</li>
+      <li data-index="11" onclick="sendSort(this)" tapmode><i></i>ddd</li>
+      <li data-index="12" onclick="sendSort(this)" tapmode><i></i>aaaa</li>
+      <li data-index="13" onclick="sendSort(this)" tapmode><i></i>ffff</li>
+      <li data-index="14" onclick="sendSort(this)" tapmode><i></i>sads</li>
   </ul>
 </body>
 </html>
@@ -32,12 +33,21 @@
 <script src="../../script/app.js"></script>
 <script type="text/javascript">
   apiready = function(){
-    // leftFrameW = $api.offset($api.dom('.leftFrame')).w;
-    // api.sendEvent({
-    //     name: 'leftFrameW',
-    //     extra:  leftFrameW
-    // });
-    // console.log('frame'+leftFrameW);
+
+  }
+
+  function sendSort(el){
+    $api.removeCls($api.dom('.on'), 'on');
+    $api.removeCls($api.dom('.round'), 'round');
+    $api.addCls(el, 'on');
+    $api.addCls($api.first(el,'i'),'round');
+    var thisIndex = $api.attr(el, 'data-index');
+    api.sendEvent({
+        name: 'sortLeft',
+        extra: {
+            thisIndex: thisIndex
+        }
+    });
   }
 
 </script>

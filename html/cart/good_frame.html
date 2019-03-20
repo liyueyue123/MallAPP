@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
   <html>
   <head>
@@ -21,3 +22,43 @@
       };
   </script>
   </html>
+=======
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+      <style>
+          body{
+            width: 100%;
+            height:100%;
+          }
+      </style>
+  </head>
+  <body>
+      <div id="list">4dddfff</div>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+            list(0)
+      };
+      function list (tab) {
+          var list = $api.byId('list');
+          if(tab==0){
+              list.innerText="销量"
+          }else if(tab==1) {
+              list.innerText="最新"
+          }else if(tab==2) {
+              list.innerText="价格低"
+          }else if(tab==2.5) {
+              list.innerText="价格高"
+          }else{
+             list.innerText="筛选"
+          }
+      }
+  </script>
+  </html>
+>>>>>>> 6756dfe936bdb23cac03dbb84e4d48fe29130b60
