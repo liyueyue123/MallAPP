@@ -21,7 +21,9 @@ body,html{
 }
 
 .searchBox {
-    width: 100%;
+    margin-left: 4rem;
+    display: inline-block;
+    width: 90%;
     height: 5.2rem;
     position: relative;
 }
@@ -179,6 +181,9 @@ body,html{
 .goodsBox{
   background-color: #ffffff;
 }
+.goodsList {
+  margin-top: 4.05rem;
+}
 .goodsList>li{
   width:100%;
   height:10rem;
@@ -298,6 +303,8 @@ body,html{
 
 /*一般frame的头部*/
 .generalTitle {
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 4.05rem;
   font-size: 1.8rem;
@@ -307,11 +314,15 @@ body,html{
   align-items:center;
   margin-bottom: .2rem;
   border-bottom: .15rem solid #e7e7e7;
+  background-color: #fff;
 }
 .generalTitle>li {
   width: 18%;
   height: 2rem;
   text-align: center;
+}
+.generalTitle>li.active {
+  color: #d34c49;
 }
 .priceIcon {
   display: inline-block;
@@ -334,62 +345,48 @@ body,html{
 
 /*搜索Header*/
 .searchHeader {
+  position: relative;
   width: 100%;
   background-color: #ffffff;
   border-bottom: .1rem solid #e7e7e7;
-  height: 7.6rem;
-  margin-bottom: 1rem;
+  height: 6.1rem;
+  line-height: 6.1rem;
 }
 .sortBack {
-  margin: .5rem 0 .5rem 1rem;
-  width: 2rem;
-  height: 2rem;
+  position: absolute;
+  top: 4rem;
+  left: 1rem;
+  display: inline-block;
+  width: 2.4rem;
+  height: 2.4rem;
   background: url(../image/sort/sortBackIcon.png) no-repeat;
   background-size: 100% 100%;
 }
 .searchIn {
   display: inline-block;
-  width: 82%;
+  width: 84%;
   height: 3.6rem;
+  line-height: 3.6rem;
   background-color: #f7f7f7;
   color: #7d7d7d;
   font-size: 1.3rem;
   border-radius: 2rem;
-  margin: .3% 3.5% 0 3.5%;l
+  margin: .5% 3.5% 0 0;
 }
-
-.searchIn>i {
-    display: inline-block;
-    margin-left: 1rem;
-    width: 1.2rem;
-    height: 1.2rem;
-    line-height: 3.6rem;
-    background: url(../image/sort/deepSearch.png) no-repeat;
-    background-size: 100% 100%;
-}
-
-.searchIn>span {
-    margin-left: 1rem;
-    line-height: 3.6rem;
-}
-.searchIn>input {
+.searchIn .commodity_key {
+  width: 100%;
+  height: 100%;
   margin-left: 1rem;
   line-height: 3.6rem;
+  padding-left: 2rem;
+  background: url(../image/sort/deepSearch.png) 0 1.2rem no-repeat;
+  background-size: 1.2rem 1.2rem;
 }
 
 .searchAssort {
   position: absolute;
-  top: 0;
-  right: .5rem;
-  margin: 1rem;
-  width: 10%;
-  margin: 2%;
-  color: #4f4f4f;
-  font-size: 1rem;
-  text-align: center;
-}
-.searchAssort>i{
-  display: inline-block;
+  top: 1.8rem;
+  right: 2rem;
   width: 2.4rem;
   height: 2.4rem;
   background: url(../image/sort/horizontalRow.png) no-repeat;
@@ -397,3 +394,12 @@ body,html{
 }
 
 /*搜索body*/
+.hotSearch {
+  width: 100%;
+  height: 5rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-left: 1.8rem;
+  line-height: 5rem;
+  background-color: gray;
+}

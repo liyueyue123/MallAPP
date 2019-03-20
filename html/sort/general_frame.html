@@ -13,10 +13,10 @@
   <section class="rightFrame">
     <div class="goodsBox">
       <ul class="generalTitle">
-          <li>销量</li>
-          <li>最新</li>
-          <li>价格<i class="priceIcon priceUp"></i></li>
-          <li>筛选</li>
+          <li class="active" data-index='1' onclick="changeSort(this)">销量</li>
+          <li data-index='2' onclick="changeSort(this)">最新</li>
+          <li data-index='3' onclick="changeSort(this)">价格<i class="priceIcon"></i></li>
+          <li data-index='4' onclick="changeSort(this)">筛选</li>
       </ul>
       <ul class="goodsList">
         <li>
@@ -29,7 +29,7 @@
               </div>
           </div>
         </li>
-        <li>
+        <li class="listaaa">
           11111
         </li>
         <li>111</li>
@@ -47,3 +47,42 @@
 </html>
 <script src="../../script/api.js"></script>
 <script src="../../script/app.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+    getSort();
+  }
+
+  // list的排序
+  function changeSort(el){
+    var thisIndex = $api.attr(el, 'data-index');
+    // 其他按钮重复点击
+    if(!$api.hasCls(el, 'active') || thisIndex==3){
+      $api.removeCls($api.dom('.active'), 'active');
+      $api.addCls(el, 'active');
+      if(thisIndex==3){
+        if($api.hasCls($api.dom('.priceIcon'), 'priceUp')){
+          $api.removeCls($api.dom('.priceIcon'), 'priceUp');
+          $api.addCls($api.dom('.priceIcon'), 'priceDown');
+        }else if($api.hasCls($api.dom('.priceIcon'), 'priceDown')) {
+          $api.removeCls($api.dom('.priceIcon'), 'priceDown');
+          $api.addCls($api.dom('.priceIcon'), 'priceUp');
+        }else {
+          $api.addCls($api.dom('.priceIcon'), 'priceUp');
+        }
+      }else {
+        $api.removeCls($api.dom('.priceIcon'), 'priceDown');
+        $api.removeCls($api.dom('.priceIcon'), 'priceUp');
+      }
+    }
+  }
+
+  // 接收左侧分类渲染右侧内容
+   function getSort(){
+      api.addEventListener({
+          name: 'sortLeft'
+      }, function(ret, err) {
+          console.log(JSON.stringify(ret.value.thisIndex));
+          $api.html($api.dom('.listaaa'), ret.value.thisIndex);
+      });
+   }
+</script>
