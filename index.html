@@ -55,6 +55,7 @@
 
 </html>
 <script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/app.js"></script>
 <script type="text/javascript">
     apiready = function() {
       // 设置状态栏的属性
@@ -83,7 +84,8 @@
                     footerH: footerH,
                     headerH: headerH
                 },
-                bounces: true
+                bounces: true,
+                customRefreshHeader: 'UIPullRefresh',
             })
         }
         api.openFrameGroup({ //打开frameGroup页面

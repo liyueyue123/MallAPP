@@ -11,6 +11,7 @@
         .empty{
             width:100%;
             overflow: hidden;
+            padding-bottom: 5.5rem;
         }
         /*数据为空时*/
         .empty .empty_none{
@@ -56,11 +57,12 @@
             height: 3.4rem;
             line-height: 3.4rem;
             margin-top: 3rem;
+            margin-bottom: 2.8rem;
         }
         /*推荐*/
         .empty .empty_recommend{
             border-top:1.1rem solid #f7f7f7;
-            margin-top: 2.8rem;
+            /*margin-top: 2.8rem;*/
         }
         .empty .empty_recommend p{
             font-size: 1.6rem;
@@ -102,11 +104,256 @@
             border:1px solid black;
             margin-top: 1.7rem;
         }
+    .phone_main{
+        border-bottom: 1rem solid #eee
+    }
+    .phone_main:last-child{
+        border:none;
+    }
+    .phone_ul{
+          height: auto;
+          overflow: hidden;
+          border-bottom: .1rem solid #ccc;
+    }
+
+    .phone_ul>li {
+        width: 135%;
+    }
+
+    #phone_swiper {
+        height: auto;
+        overflow: hidden;
+        -webkit-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+    }
+
+    .phone_sw_left {
+        width: 74%;
+        height: auto;
+        overflow: hidden;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        align-items:center;
+        float: left;
+        position: relative;
+    }
+
+    .phone_sw_right {
+        width: 26%;
+        height: auto;
+        overflow: hidden;
+        float: right;
+        background-color: #ccc;
+    }
+
+    .phone_sw_right>a {
+        width: 100%;
+        height: 8rem;
+        line-height: 8rem;
+        display: block;
+        float: left;
+        font-size: 1.2rem;
+        color: #fff;
+        text-align: center;
+    }
+
+    #phone_sw_eidt {
+        background-color: #333;
+    }
+
+    #phone_sw_del {
+        background-color: #B62C2C;
+    }
+
+    .swipeleft {
+        transform: translateX(-26%);
+        -webkit-transform: translateX(-26%);
+    }
+    .phone_header {
+        height: 4rem;
+        border-top: .1rem solid #ccc;
+        border-bottom: .1rem solid #ccc;
+        line-height: 4rem;
+        font-size: 1.4rem;
+        padding-left: 1.4rem;
+    }
+    input, button, textarea {
+      -webkit-appearance: none;
+    }
+    input, button, textarea {
+        outline:none
+    }
+    #phone_header{
+        display: inline-block;
+        width: 1.7rem;
+        height: 1.7rem;
+        border-radius: 50%;
+        border: .1rem solid #eee;
+        vertical-align: middle;
+        margin-top: -0.1rem;
+
+    }
+    #phone_header.active{
+        display: inline-block;
+        width: 1.7rem;
+        height: 1.7rem;
+        background: url('../../image/cart/empty_index.jpg') no-repeat;
+        background-size: 100%;
+        vertical-align: middle;
+        margin-top: -0.1rem;
+    }
+    .phone_header label{
+        padding-left: .5rem;
+    }
+    .phone_footer{
+        height: 9.4rem;
+        width: 100%;
+    }
+    .phone_footer h1 {
+        display: inline-block;
+        margin: 1.2rem 0 0 1.3rem;
+    }
+    .phone_footer ul{
+        float: right;
+    }
+    .phone_footer ul{
+        margin: 1.2rem 1.3rem 0 0;
+        font-size: 1.6rem;
+        text-align: right;
+    }
+    .phone_footer ul li:nth-child(2){
+        margin-top: .7rem;
+        font-size: 1.2rem;
+        color:#ccc;
+    }
+    .phone_footer ul li:last-child{
+        margin-top: .7rem;
+        font-size: 1.4rem;
+        color:#C4965B;
+    }
+    .phone_checkedOne{
+        margin-left: 1.4rem;
+        margin-top:0rem !important;
+    }
+    .phone_detail{
+        display: flex;
+        align-items:center;
+        margin-left: 1rem;
+    }
+    .phone_detail img{
+        width: 10.5rem;
+    }
+    .phone_detail ul{
+        display: inline-block;
+    }
+    .phone_detail ul li{
+        color:#ccc;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    .phone_detail ul li:first-child{
+        width: 21.5rem;
+        margin-top: 1.6rem;
+        font-size: 1.6rem;
+        line-height: 1;
+        color: black;
+    }
+    .phone_detail ul li:first-child span{
+        border: .1rem solid red;
+        display: inline-block;
+        color:red;
+        font-size: 1.2rem;
+        padding: .1rem;
+        vertical-align: top;
+    }
+    .phone_detail ul li:nth-child(2){
+        margin-top: 1rem;
+    }
+    .phone_detail ul li:last-child{
+        color:red;
+        font-size:1.4rem;
+    }
+    .phone_detail_num {
+        position: absolute;
+        right:1rem;
+        bottom: 1rem;
+        width: 8.2rem;
+        height: 2.8rem;
+        border: .1rem solid #B2B2B2;
+        border-radius: 1.5rem;
+        font-size: 2.8rem;
+        line-height: 2rem;
+        color: #B2B2B2;
+    }
+    .plus{
+        display: inline-block;
+        width: 2.4rem;
+        height: 2.4rem;
+        border: .1rem solid #B2B2B2;
+        text-align: center;
+        border-radius: 50%;
+        margin-left: .2rem;
+        margin-top: .1rem;
+    }
+    .reduce{
+        float: right;
+        display: inline-block;
+        width: 2.4rem;
+        height: 2.4rem;
+        border: .1rem solid #B2B2B2;
+        text-align: center;
+        font-size: 2.4rem;
+        border-radius: 50%;
+        margin-right: .2rem;
+        margin-top: .1rem;
+    }
+    .number {
+        font-size: 1.6rem;
+        text-align: center;
+        color: black;
+        font-weight: normal;
+        vertical-align: middle;
+        /*margin-left: -0.2rem;*/
+    }
+    .all_money{
+        position: fixed;
+        bottom:0;
+        width: 100%;
+        height: 4.8rem;
+        border-top: .1rem solid #eee;
+        border-bottom: .1rem solid #eee;
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+    }
+    .all_money p{
+        font-size: 1.4rem;
+        line-height: 1.50;
+        margin-top: .5rem;
+        margin-left: 1rem;
+    }
+    .all_money p:nth-child(2){
+        font-size: 1.2rem;
+        color: #A2A2A2;
+    }
+    .all_money p:nth-child(2) span{
+        color:#CD9A65;
+        vertical-align: middle;
+    }
+    .all_money button{
+        width: 10.2rem;
+        float: right;
+        height: auto;
+        background: red;
+        color: #fff;
+        font-size: 1.2rem;
+    }
     </style>
 </head>
 <body>
     <div class="empty">
-        <div class="empty_none">
+        <div class="empty_none"  style="display:none">
             <div>
                 <p><i></i><span>购物车空空的</span></p>
                 <div class="empty_none_coupon">
@@ -115,6 +362,164 @@
                 <div class="empty_none_btn" onclick="serFrameGroup()" tapmode>发现好物</div>
             </div>
         </div>
+
+    <div>
+        <div class="phone_main">
+            <div class="phone_header" data-checked=false onclick="checked( this )" tapmode>
+                <i id="phone_header"></i>
+                <label>精选好物 <span>|</span> 包邮</label>
+            </div>
+            <ul class="phone_ul">
+                <li>
+                    <div id="phone_swiper">
+                          <div class="phone_sw_left">
+                                <div>
+                                    <i id="phone_header" data-checked="false" class="phone_checkedOne" onclick="checkedOne(this)" tapmode></i>
+                                </div>
+                                <div class="phone_detail" onclick="order()" tapmode>
+                                    <img src="../../image/cart/empty_none_coupon.png" alt="">
+                                    <ul>
+                                        <li><span>限时购</span>日本美肌睫毛眼影各种各种奥各种奥奥120ml</li>
+                                        <li>不可用卷</li>
+                                        <li>规格100ml</li>
+                                        <li>已优惠十元，仅限两件优惠</li>
+                                        <li>￥108.00</li>
+                                    </ul>
+                                </div>
+                                <div class="phone_detail_num" onclick="plus(event)" tapmode>
+                                    <span class="plus">+</span>
+                                    <b class="number" id="number">1</b>
+                                    <span class="reduce">—</span>
+                                </div>
+                          </div>
+
+                          <div class="phone_sw_right">
+                              <a href="#" id="phone_sw_del" tapmode>删除</a>
+                          </div>
+                    </div>
+                </li>
+                <li>
+                    <div id="phone_swiper">
+                          <div class="phone_sw_left">
+                                <div>
+                                    <i id="phone_header" data-checked="false" class="phone_checkedOne" onclick="checkedOne(this)" tapmode></i>
+                                </div>
+                                <div class="phone_detail" onclick="order()" tapmode>
+                                    <img src="../../image/cart/empty_none_coupon.png" alt="">
+                                    <ul>
+                                        <li><span>限时购</span>日本美肌睫毛眼影各种各种奥各种奥奥120ml</li>
+                                        <li>不可用卷</li>
+                                        <li>规格100ml</li>
+                                        <li>已优惠十元，仅限两件优惠</li>
+                                        <li>￥108.00</li>
+                                    </ul>
+                                </div>
+                                <div class="phone_detail_num" onclick="plus(event)" tapmode>
+                                    <span class="plus">+</span>
+                                    <b class="number" id="number">1</b>
+                                    <span class="reduce">—</span>
+                                </div>
+                          </div>
+
+                          <div class="phone_sw_right">
+                              <a href="#" id="phone_sw_del" tapmode>删除</a>
+                          </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="phone_footer" >
+                <h1>商品金额</h1>
+                <ul>
+                    <li>￥208</li>
+                    <li>已享优惠￥49.00</li>
+                    <li>已享包邮</li>
+                </ul>
+            </div>
+        </div>
+        <div class="phone_main">
+            <div class="phone_header" data-checked=false onclick="checked( this )" tapmode>
+                <i id="phone_header"></i>
+                <label>精选好物 <span>|</span> 包邮</label>
+            </div>
+            <ul class="phone_ul">
+                <li>
+                    <div id="phone_swiper">
+                          <div class="phone_sw_left">
+                                <div>
+                                    <i id="phone_header" data-checked="false" class="phone_checkedOne" onclick="checkedOne(this)" tapmode></i>
+                                </div>
+                                <div class="phone_detail" onclick="order()" tapmode>
+                                    <img src="../../image/cart/empty_none_coupon.png" alt="">
+                                    <ul>
+                                        <li><span>限时购</span>日本美肌睫毛眼影各种各种奥各种奥奥120ml</li>
+                                        <li>不可用卷</li>
+                                        <li>规格100ml</li>
+                                        <li>已优惠十元，仅限两件优惠</li>
+                                        <li>￥108.00</li>
+                                    </ul>
+                                </div>
+                                <div class="phone_detail_num" onclick="plus(event)" tapmode>
+                                    <span class="plus">+</span>
+                                    <b class="number" id="number">1</b>
+                                    <span class="reduce">—</span>
+                                </div>
+                          </div>
+
+                          <div class="phone_sw_right">
+                              <a href="#" id="phone_sw_del" tapmode>删除</a>
+                          </div>
+                    </div>
+                </li>
+                <li>
+                    <div id="phone_swiper">
+                          <div class="phone_sw_left">
+                                <div>
+                                    <i id="phone_header" data-checked="false" class="phone_checkedOne" onclick="checkedOne(this)" tapmode></i>
+                                </div>
+                                <div class="phone_detail" onclick="order()" tapmode>
+                                    <img src="../../image/cart/empty_none_coupon.png" alt="">
+                                    <ul>
+                                        <li><span>限时购</span>日本美肌睫毛眼影各种各种奥各种奥奥120ml</li>
+                                        <li>不可用卷</li>
+                                        <li>规格100ml</li>
+                                        <li>已优惠十元，仅限两件优惠</li>
+                                        <li>￥108.00</li>
+                                    </ul>
+                                </div>
+                                <div class="phone_detail_num" onclick="plus(event)" tapmode>
+                                    <span class="plus">+</span>
+                                    <b class="number" id="number">1</b>
+                                    <span class="reduce">—</span>
+                                </div>
+                          </div>
+
+                          <div class="phone_sw_right">
+                              <a href="#" id="phone_sw_del" tapmode>删除</a>
+                          </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="phone_footer" >
+                <h1>商品金额</h1>
+                <ul>
+                    <li>￥208</li>
+                    <li>已享优惠￥49.00</li>
+                    <li>已享包邮</li>
+                </ul>
+            </div>
+        </div>
+        <div class="all_money">
+            <div>
+                <p>总计：￥317元 | 优惠券已抵扣￥5.00元</p>
+                <p onclick="openPopup()" tapmode>含邮费：<span>￥10.00 ></span></p>
+            </div>
+            <button onclick="openPay()" tapmode>结算</button>
+        </div>
+    </div>
+
+
+
+
 
 
         <div class="empty_recommend">
@@ -143,6 +548,7 @@
 <script scr="../../script/app.js"></script>
 <script>
     apiready=function () {
+        sliderLeft()
     }
     function openPage() {
         api.openWin({
@@ -154,21 +560,142 @@
            delay : 100
         });
     }
-    function order() {
+    function openPay() {
         api.openWin({
             name: 'order',
             url: 'order.html',
             pageParam: {
                 index: 1
             },
-            delay : 100
+            delay : 100,
         });
     }
-
     function serFrameGroup() {
         api.setFrameGroupIndex({
             name: 'group',
             index: 0
+        });
+    }
+    function checked(tag) {
+        var state = tag.getAttribute("data-checked")
+        var all=tag.nextElementSibling.querySelectorAll(".phone_checkedOne")
+        if (state=="false") {
+            tag.setAttribute("data-checked","true")
+            $api.addCls(tag.children[0], 'active');
+            for(var i=0; i<all.length; i++) {
+                all[i].setAttribute("data-checked","true")
+                $api.addCls(all[i], 'active');
+            }
+        }else{
+            tag.setAttribute("data-checked","false")
+            $api.removeCls(tag.children[0], 'active');
+            for(var i=0; i<all.length; i++) {
+                all[i].setAttribute("data-checked","false")
+                $api.removeCls(all[i], 'active');
+            }
+        }
+    }
+    function checkedOne(tag) {
+        var state = tag.getAttribute("data-checked")
+        var parent=tag.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild
+        var all = parent.nextElementSibling.querySelectorAll(".phone_checkedOne")
+        if (state=="false") {
+            tag.setAttribute("data-checked","true")
+            $api.addCls(tag, 'active');
+            for(var i=0; i<all.length; i++) {
+                if(all[i].getAttribute("data-checked").indexOf("false")!=-1){
+                    return;
+                }
+            }
+            parent.setAttribute("data-checked","true")
+            $api.addCls(parent.children[0], 'active');
+        }else{
+            parent.setAttribute("data-checked","false")
+            tag.setAttribute("data-checked","false")
+            $api.removeCls(parent.children[0], 'active');
+            $api.removeCls(tag, 'active');
+        }
+    }
+    function plus (ev) {
+       var ev = ev || window.event;
+　　　　var target = ev.target || ev.srcElement;
+        if (target.nodeName!="SPAN") {
+            return;
+        }
+        if(target.className == 'plus'){
+            var num = target.nextElementSibling.innerHTML;
+            var x = parseInt(num)
+            x++
+            target.nextElementSibling.innerHTML=x
+　　　　}else{
+            var num = target.previousElementSibling.innerHTML;
+            var x = parseInt(num)
+            if (num == 0) {
+                return;
+            }
+            x--
+            target.previousElementSibling.innerHTML=x
+        }
+    }
+    // 侧滑
+    function sliderLeft() {
+      var expansion = null; //是否存在展开的list
+      var container = document.querySelectorAll('div#phone_swiper');
+      for (var i = 0; i < container.length; i++) {
+          var x, y, X, Y, swipeX, swipeY;
+          var thisH = $api.offset(container[i]).h;
+          var elems = $api.domAll(container[i], 'a');
+          for (var k = 0; k < elems.length; k++) {
+              var ttt = $api.html(elems[k]);
+              $api.css(elems[k], 'height:' + thisH + 'px;line-height:' + thisH + 'px;');
+          }
+          container[i].addEventListener('touchstart', function(event) {
+              x = event.changedTouches[0].pageX;
+              y = event.changedTouches[0].pageY;
+              swipeX = true;
+              swipeY = true;
+              if (expansion) { //判断是否展开，如果展开则收起
+                  expansion.className = "";
+              }
+          });
+          container[i].addEventListener('touchmove', function(event) {
+              X = event.changedTouches[0].pageX;
+              Y = event.changedTouches[0].pageY;
+              // 左右滑动
+              if (swipeX && Math.abs(X - x) - Math.abs(Y - y) > 0) {
+                  // 阻止事件冒泡
+                  event.stopPropagation();
+                  if (X - x > 10) { //右滑
+                      event.preventDefault();
+                      this.className = ""; //右滑收起
+                  }
+                  if (x - X > 10) { //左滑
+                      event.preventDefault();
+                      this.className = "swipeleft"; //左滑展开
+                      expansion = this;
+                  }
+                  swipeY = false;
+              }
+              // 上下滑动
+              if (swipeY && Math.abs(X - x) - Math.abs(Y - y) < 0) {
+                  swipeX = false;
+              }
+          });
+      }
+    }
+
+    function openPopup() {
+        var footerH=api.pageParam.footerH
+        api.openFrame({
+            name: 'popup_frame',
+            url: './popup_frame.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: "auto",
+                h: "auto",
+            },
+            bgColor:'rgba(0, 0, 0, 0.5)'
         });
     }
 </script>

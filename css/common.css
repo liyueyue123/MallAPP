@@ -67,7 +67,13 @@ header>ul>li.active {
   margin-left: 1rem;
   line-height: 3.6rem;
 }
-
+/*购物车不为空*/
+.head_none {
+    height:4.4rem;
+    background-color:#fff8f0;
+    text-align: left;
+    padding-left: 1rem;
+}
 .footMark {
     width: 10%;
     height: 5rem;
@@ -92,13 +98,6 @@ header>ul>li.active {
 
 /*购物车*/
 
-/*购物车不为空*/
-.head_none {
-    height:4.4rem;
-    background-color:#fff8f0;
-    text-align: left;
-    padding-left: 1rem;
-}
 
 /*底部导航*/
 #footer ul li {
